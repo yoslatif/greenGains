@@ -54,6 +54,22 @@ const config: Config = {
       },
       variants: {
         display: ["group-hover"],
+        visibility: ["group-hover"],
+      },
+      animation: {
+        "slide-in": "slide-in 1s ease var(--slide-in-delay) forwards",
+      },
+      keyframes: {
+        "slide-in": {
+          "0%": {
+            transform: "translateY(-25px)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
       },
     },
   },

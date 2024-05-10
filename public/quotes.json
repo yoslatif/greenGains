@@ -1,0 +1,54 @@
+{
+    "Quotes": [
+        {
+            "id": 1,
+            "text": "Reading is to the mind what exercise is to the body.",
+            "author": "Joseph Addison"
+        },
+        {
+            "id": 2,
+            "text": " hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion.",
+            "author": "Muhammad Ali"
+        },
+        {
+            "id": 3,
+            "text": "We are what we repeatedly do. Excellence then is not an act but a habit.",
+            "author": "Aristotele"
+        },
+        {
+            "id": 4,
+            "text": "The body achieves what the mind believes.",
+            "author": "Napoleon Hill"
+        },
+        {
+            "id": 5,
+            "text": "The hard days are the best because that’s when champions are made, so if you push through, you can push through anything.",
+            "author": "Dana Vollmer"
+        },
+        {
+            "id": 6,
+            "text": "If you don’t find the time, if you don’t do the work, you don’t get the results.",
+            "author": "Arnold Schwarzenegger"
+        },
+        {
+            "id": 7,
+            "text": "Push harder than yesterday if you want a different tomorrow.",
+            "author": "Vincent Williams Sr."
+        },
+        {
+            "id": 8,
+            "text": "The real workout starts when you want to stop.",
+            "author": "Ronnie Coleman"
+        },
+        {
+            "id": 9,
+            "text": "Take care of your body. It’s the only place you have to live.",
+            "author": "Jim Rohn"
+        },
+        {
+            "id": 10,
+            "text": "I’ve failed over and over again in my life and that is why I succeed.",
+            "author": "Michael Jordan"
+        }
+    ]
+}

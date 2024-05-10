@@ -1,38 +1,42 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { Quotes } from "../public/quotes.json";
+import { useCallback, useEffect, useState } from "react";
+
+interface quotes {
+  id: number;
+  text: string;
+  author: string;
+}
 
 export default function Home() {
-  const [hidden, setHidden] = useState(true);
+  const [Quotes_d, setQuotes] = useState<quotes[]>(Quotes);
+  const [quote, setQuote] = useState<quotes>();
+  const RandomQuote = (Quotes_S: quotes) => {
+    const RandomIndex = Math.floor(Math.random() * Quotes_S?.length);
+    console.log(RandomIndex);
+    setQuote(Quotes_S[RandomIndex]);
+  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log(RandomQuote(Quotes));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="bg-background-gym w-screen h-dvh bg-fixed bg-center">
-      <div className="flex flex-row p-5 items-center justify-between bg-transparent backdrop-blur-2xl">
-        <Image src="/logo.jpg" alt="logo" width={70} height={70} />
-        <div
-          onMouseEnter={() => {
-            hidden ? setHidden(false) : setHidden(true);
-          }}
-        >
-          <h1 className="text-4xl font-bold text-white">Green Gains</h1>
-        </div>
+    <div className="w-screen h-screen bg-scroll flex justify-center items-center">
+      <Image
+        src="/background.png"
+        layout="fill"
+        objectFit="cover"
+        alt="background"
+        className="-z-10"
+      />
+      <div className="flex flex-col items-center justify-center h-1/3 w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
+        <h1 className="text-4xl font-bold text-white p-10">{quote?.text}</h1>
+        <p className="text-white">{quote?.author}</p>
       </div>
-      {hidden ? null : (
-        <div
-          className="right-0 w-auto items-center justify-end absolute h-1/2 px-5 py-10 bg-transparent backdrop-blur-2xl"
-          onMouseLeave={() => {
-            setHidden(true);
-          }}
-        >
-          <ul className="group-hover:block">
-            <li className="text-white font-semibold text-3xl py-5">Home</li>
-            <li className="text-white font-semibold text-3xl py-5">About</li>
-            <li className="text-white font-semibold text-3xl py-5">Contact</li>
-            <li className="text-white font-semibold text-3xl py-5">
-              <a href="/appointments">Book appointment</a>
-            </li>
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
