@@ -7,6 +7,11 @@ body {
     margin: 0;
 }
 
+link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;

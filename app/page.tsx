@@ -12,17 +12,21 @@ interface quotes {
 export default function Home() {
   const [Quotes_d, setQuotes] = useState<quotes[]>(Quotes);
   const [quote, setQuote] = useState<quotes>();
-  const RandomQuote = (Quotes_S: quotes) => {
-    const RandomIndex = Math.floor(Math.random() * Quotes_S?.length);
-    console.log(RandomIndex);
-    setQuote(Quotes_S[RandomIndex]);
+  
+  // Corrected the parameter type to an array of quotes
+  const RandomQuote = (Quotes_S: quotes[]) => {
+    const RandomIndex = Math.floor(Math.random() * Quotes_S.length); // Removed optional chaining since array is now always passed
+    console.log(RandomIndex); // This will log the random index
+    setQuote(Quotes_S[RandomIndex]); // Sets the random quote
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(RandomQuote(Quotes));
+      RandomQuote(Quotes_d); // Calling the function directly without console.log
     }, 5000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [Quotes_d]); // Added Quotes_d as a dependency
 
   return (
     <div className="w-screen h-screen bg-scroll flex justify-center items-center">
