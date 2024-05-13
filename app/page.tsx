@@ -1,45 +1,141 @@
-"use client";
-import Image from "next/image";
-import { Quotes } from "../public/quotes.json";
-import { useCallback, useEffect, useState } from "react";
+// "use client";
+// import Image from "next/image";
+// import { Quotes } from "../public/quotes.json";
+// import { useCallback, useEffect, useState } from "react";
 
-interface quotes {
+// interface quotes {
+//   id: number;
+//   text: string;
+//   author: string;
+// }
+
+// export default function Home() {
+//   const [Quotes_d, setQuotes] = useState<quotes[]>(Quotes);
+//   const [quote, setQuote] = useState<quotes>();
+  
+//   // Corrected the parameter type to an array of quotes
+//   const RandomQuote = (Quotes_S: quotes[]) => {
+//     const RandomIndex = Math.floor(Math.random() * Quotes_S.length); // Removed optional chaining since array is now always passed
+//     console.log(RandomIndex); // This will log the random index
+//     setQuote(Quotes_S[RandomIndex]); // Sets the random quote
+//   };
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       RandomQuote(Quotes_d); // Calling the function directly without console.log
+//     }, 5000);
+
+//     return () => clearInterval(interval);
+//   }, [Quotes_d]); // Added Quotes_d as a dependency
+
+//   return (
+//     <div className="w-screen h-screen bg-scroll flex justify-center items-center">
+//       <Image
+//         src="/background.png"
+//         layout="fill"
+//         objectFit="cover"
+//         alt="background"
+//         className="-z-10"
+//       />
+//       <div className="flex flex-col items-center justify-center h-1/3 w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
+//         <h1 className="text-4xl font-bold text-white p-10">{quote?.text}</h1>
+//         <p className="text-white">{quote?.author}</p>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------- //
+
+
+// import Image from 'next/image';
+// import { useState, useEffect } from 'react';
+// import Services from './components/services';  // Adjust the path as necessary
+// import Testimonials from './components/testimonials';  // Adjust the path as necessary
+// import Header from './components/header';  // Ensure Header is imported if it’s not globally available
+
+// export default function Home() {
+//   return (
+//     <div>
+//       <Header />
+//       <div className="bg-scroll flex justify-center items-center w-screen h-screen">
+//         <Image
+//           src="/background.png"
+//           layout="fill"
+//           objectFit="cover"
+//           alt="background"
+//           className="-z-10"
+//         />
+//         <div className="flex flex-col items-center justify-center w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
+//           <h1 className="text-4xl font-bold text-white p-10">Welcome to Green Gains Fitness</h1>
+//           <Services />
+//           <Testimonials />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+"use client";
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Quotes } from '../public/quotes.json';
+import Services from './components/services';  // Adjust the path as necessary
+import Testimonials from './components/testimonials';  // Adjust the path as necessary
+import Header from './components/header';  // Ensure Header is imported if it’s not globally available
+
+interface Quote {
   id: number;
   text: string;
   author: string;
 }
 
 export default function Home() {
-  const [Quotes_d, setQuotes] = useState<quotes[]>(Quotes);
-  const [quote, setQuote] = useState<quotes>();
-  
-  // Corrected the parameter type to an array of quotes
-  const RandomQuote = (Quotes_S: quotes[]) => {
-    const RandomIndex = Math.floor(Math.random() * Quotes_S.length); // Removed optional chaining since array is now always passed
-    console.log(RandomIndex); // This will log the random index
-    setQuote(Quotes_S[RandomIndex]); // Sets the random quote
+  const [quotes, setQuotes] = useState<Quote[]>(Quotes);
+  const [quote, setQuote] = useState<Quote>();
+
+  const randomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    setQuote(quotes[randomIndex]);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      RandomQuote(Quotes_d); // Calling the function directly without console.log
+      randomQuote();
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [Quotes_d]); // Added Quotes_d as a dependency
+  }, [quotes]);
 
   return (
-    <div className="w-screen h-screen bg-scroll flex justify-center items-center">
-      <Image
-        src="/background.png"
-        layout="fill"
-        objectFit="cover"
-        alt="background"
-        className="-z-10"
-      />
-      <div className="flex flex-col items-center justify-center h-1/3 w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
-        <h1 className="text-4xl font-bold text-white p-10">{quote?.text}</h1>
-        <p className="text-white">{quote?.author}</p>
+    <div>
+      <Header />
+      <div className="bg-scroll flex justify-center items-center w-screen h-screen">
+        <Image
+          src="/background.png"
+          layout="fill"
+          objectFit="cover"
+          alt="background"
+          className="-z-10"
+        />
+        <div className="flex flex-col items-center justify-center w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
+          <h1 className="text-4xl font-bold text-white p-10">{quote?.text || "Welcome to Green Gains Fitness"}</h1>
+          <p className="text-white">{quote?.author}</p>
+          <div className="flex flex-row justify-around w-full mt-5">
+            {/* <Link href="/services">
+              <h1 className="text-xl text-white hover:text-gray-300">Services</h1>
+            </Link>
+            <Link href="/testimonials">
+              <h1 className="text-xl text-white hover:text-gray-300">Testimonials</h1>
+            </Link> */}
+          </div>
+          <Services />
+          <Testimonials />
+        </div>
       </div>
     </div>
   );
