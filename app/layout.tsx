@@ -23,8 +23,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         {children}
-        <Services />
-        <Testimonials />
+        {/* <Services />
+        <Testimonials /> */}
       </body>
     </html>
   );

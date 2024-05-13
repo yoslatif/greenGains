@@ -1,0 +1,22 @@
+{
+    "Testimonials": [
+        {
+            "id": "1",
+            "name": "John Doe",
+            "quote": "I feel great it made me feel like I am unstoppable on and off the field. And it made me feel confident in myself again. Before he helped me change my life around I was a big kid get made fun of for my weight now I feel great and everyone is happy for me and he helped me lose over 20 pounds in 2-3 months he really know what he's doing and talking bout he motivated me to lose weight and how to calorie track.Thank you for teaching me to lose over 20 pounds in 2-3 months I am very greatful and proud of my self I am very confident again and feel like a new person he knows what he is taling about and has thought me alot and how to take care of myself",
+            "image": "images/testimonial1.jpg"
+        },
+        {
+            "id": "2",
+            "name": "Alan Habibi",
+            "quote": "It has been really enjoying the program you set for me. It fits in perfect to my busy schedule and helped me focus on a lot of things I was overlooking like muscle mobility and getting pain free workouts. Working out has become my favorite part of the day since I took your advice. And after my ankle injury, I really appreciated how we swapped focus on recovery. The pain went away quickly and I felt better much sooner than I expected! Looking forward to continuing this 🔥",
+            "image": "images/testimonial2.jpg"
+        },
+        {
+            "id": "3",
+            "name": "John Smith",
+            "quote": "I love this product",
+            "image": "images/testimonial3.jpg"
+        }
+    ]
+}

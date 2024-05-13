@@ -113,30 +113,22 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
-      <div className="bg-scroll flex justify-center items-center w-screen h-screen">
-        <Image
-          src="/background.png"
-          layout="fill"
-          objectFit="cover"
-          alt="background"
-          className="-z-10"
-        />
-        <div className="flex flex-col items-center justify-center w-[80%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl">
-          <h1 className="text-4xl font-bold text-white p-10">{quote?.text || "Welcome to Green Gains Fitness"}</h1>
-          <p className="text-white">{quote?.author}</p>
-          <div className="flex flex-row justify-around w-full mt-5">
-            {/* <Link href="/services">
-              <h1 className="text-xl text-white hover:text-gray-300">Services</h1>
-            </Link>
-            <Link href="/testimonials">
-              <h1 className="text-xl text-white hover:text-gray-300">Testimonials</h1>
-            </Link> */}
-          </div>
-          <Services />
-          <Testimonials />
-        </div>
-      </div>
+  <Header />
+  <div className="bg-scroll flex justify-center items-center w-screen min-h-screen">
+    <Image
+      src="/background.png"
+      layout="fill"
+      objectFit="cover"
+      alt="background"
+      className="-z-10"
+    />
+    <div className="flex flex-col items-center justify-center w-[95%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-28">
+      <h1 className="text-4xl font-bold text-white p-10">{quote?.text || "Welcome to Green Gains Fitness"}</h1>
+      <p className="text-white">{quote?.author}</p>
+      <Services />
+      <Testimonials />
     </div>
+  </div>
+</div>
   );
 }
