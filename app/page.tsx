@@ -82,7 +82,7 @@
 
 "use client";
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Quotes } from '../public/quotes.json';
 import Services from './components/services';  // Adjust the path as necessary
@@ -98,6 +98,8 @@ interface Quote {
 export default function Home() {
   const [quotes, setQuotes] = useState<Quote[]>(Quotes);
   const [quote, setQuote] = useState<Quote>();
+  const [fade, setFade] = useState(true); // New state to manage fade
+  const indexRef = useRef(0);
 
   const randomQuote = () => {
     const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -106,10 +108,17 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      randomQuote();
+      setFade(false); // Begin fade out
+      setTimeout(() => {
+        if (++indexRef.current === quotes.length) indexRef.current = 0; // Cycle through quotes
+        setQuote(quotes[indexRef.current]);
+        setFade(true); // Fade in new quote
+      }, 500); // This timeout should match the CSS transition duration
     }, 5000);
+
     return () => clearInterval(interval);
-  }, [quotes]);
+  }, []);
+
 
   return (
     <div>
@@ -123,9 +132,13 @@ export default function Home() {
       className="-z-10"
     />
     <div className="flex flex-col items-center justify-center w-[95%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-28">
-      <h1 className="text-4xl font-bold text-white p-10">{quote?.text || "Welcome to Green Gains Fitness"}</h1>
-      <p className="text-white">{quote?.author}</p>
-      <Services />
+          <div className={`transition-opacity duration-800 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-white p-10">{quote?.text || "Welcome to Green Gains Fitness"}</h1>
+              <p className="text-white">{quote?.author}</p>
+            </div>
+          </div>
+          <Services />
       <Testimonials />
     </div>
   </div>
