@@ -1,24 +1,5 @@
-// // components/Testimonials.tsx
-// import React from 'react';
-// import Link from 'next/link';
-// import { Testimonials as ExternalTestimonials } from '../../public/testimonials.json';
-
-// export default function Testimonials() {
-//     // const testimonials = [{ name: "John Doe", text: "Great experience!" }, { name: "Jane Doe", text: "Loved the personalized service!" }];
-//     return (
-//         <div className="space-y-4 p-5">
-//             <h1>TESTIMONIALS</h1>
-//             {ExternalTestimonials.map(ExternalTestimonials => (
-//                 <blockquote key={ExternalTestimonials.id}>
-//                     "{ExternalTestimonials.quote}" - <strong>{ExternalTestimonials.name}</strong>
-//                 </blockquote>
-//             ))}
-//         </div>
-//     );
-// }
-
 import React, { useState, useEffect } from 'react';
-import { Testimonials as ExternalTestimonials } from '../../public/testimonials.json';
+import testimonialsData from '../../public/testimonials.json';
 
 interface Testimonial {
   id: string;
@@ -34,7 +15,7 @@ export default function Testimonials() {
     useEffect(() => {
         const initialTestimonials: Testimonial[] = [];
         while (initialTestimonials.length < 3) {
-            const randomTestimonial = ExternalTestimonials[Math.floor(Math.random() * ExternalTestimonials.length)];
+            const randomTestimonial = testimonialsData.Testimonials[Math.floor(Math.random() * testimonialsData.Testimonials.length)];
             if (!initialTestimonials.find(t => t.id === randomTestimonial.id)) {
                 initialTestimonials.push(randomTestimonial);
             }
@@ -50,7 +31,7 @@ export default function Testimonials() {
             let newTestimonial: Testimonial;
 
             do {
-                newTestimonial = ExternalTestimonials[Math.floor(Math.random() * ExternalTestimonials.length)];
+                newTestimonial = testimonialsData.Testimonials[Math.floor(Math.random() * testimonialsData.Testimonials.length)];
             } while (activeTestimonials.find(t => t.id === newTestimonial.id));
 
             // Fade out the current testimonial
@@ -72,7 +53,7 @@ export default function Testimonials() {
             <h1 className="text-green-500 text-xl font-bold">TESTIMONIALS</h1>
             {activeTestimonials.map((testimonial) => (
                 <blockquote key={testimonial.id} className={`transition-opacity duration-500 ${fadeStatus[testimonial.id] ? 'opacity-100' : 'opacity-0'} testimonial-text`}>
-                "<span>{testimonial.quote}</span>" - <strong>{testimonial.name}</strong>
+                &quot;<span>{testimonial.quote}</span>&quot; - <strong>{testimonial.name}</strong>
             </blockquote>
             ))}
         </div>
