@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import Image from "next/image";
 
 const config: Config = {
   content: [
