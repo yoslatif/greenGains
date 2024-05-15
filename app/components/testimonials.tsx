@@ -71,9 +71,9 @@ export default function Testimonials() {
         <div className="space-y-4 p-5">
             <h1 className="text-green-500 text-xl font-bold">TESTIMONIALS</h1>
             {activeTestimonials.map((testimonial) => (
-                <blockquote key={testimonial.id} className={`transition-opacity duration-500 ${fadeStatus[testimonial.id] ? 'opacity-100' : 'opacity-0'}`}>
-                    "<span className="text-white">{testimonial.quote}</span>" - <strong className="text-white">{testimonial.name}</strong>
-                </blockquote>
+                <blockquote key={testimonial.id} className={`transition-opacity duration-500 ${fadeStatus[testimonial.id] ? 'opacity-100' : 'opacity-0'} testimonial-text`}>
+                "<span>{testimonial.quote}</span>" - <strong>{testimonial.name}</strong>
+            </blockquote>
             ))}
         </div>
     );

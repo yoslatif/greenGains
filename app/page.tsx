@@ -121,8 +121,10 @@ export default function Home() {
 
 
   return (
-    <div>
-  <Header />
+    <div className="main-content">
+
+      
+
   <div className="bg-scroll flex justify-center items-center w-screen min-h-screen">
     <Image
       src="/background.png"
@@ -138,7 +140,9 @@ export default function Home() {
               <p className="text-white">{quote?.author}</p>
             </div>
           </div>
+          <div className="serviceHome">
           <Services />
+          </div>
       <Testimonials />
     </div>
   </div>
