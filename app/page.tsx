@@ -71,15 +71,12 @@
 //   );
 // }
 
-
 "use client";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { Quotes } from "../public/quotes.json";
 import Services from "./components/services";
 import Testimonials from "./components/testimonials";
-import Header from "./components/header";
 
 interface Quote {
   id: number;
@@ -94,14 +91,15 @@ export default function Home() {
   const [backgroundIndex, setBackgroundIndex] = useState(0); // New state for background index
   // const backgrounds = ["/background.jpg", "/gymNeon.jpg", "/abstract-fitness.jpg", "/beachgym.jpg"]; // Array of background images
   const backgrounds = ["/gymNeon.jpg"];
-  
+
   const indexRef = useRef(0); // Declare indexRef variable
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {
       setFade(false);
       setTimeout(() => {
-        const newIndex = quotes.length > 1 ? (indexRef.current + 1) % quotes.length : 0;
+        const newIndex =
+          quotes.length > 1 ? (indexRef.current + 1) % quotes.length : 0;
         indexRef.current = newIndex;
         setQuote(quotes[newIndex]);
         setFade(true);
@@ -112,25 +110,28 @@ export default function Home() {
 
   useEffect(() => {
     const backgroundInterval = setInterval(() => {
-      setBackgroundIndex(prev => (prev + 1) % backgrounds.length); // Cycle through background images
+      setBackgroundIndex((prev) => (prev + 1) % backgrounds.length); // Cycle through background images
     }, 13000); // Change background every 10 seconds
     return () => clearInterval(backgroundInterval);
   }, [backgrounds.length]);
 
   return (
-    <div className="main-content">
+    <div className="w-screen min-h-screen relative overflow-hidden">
       <div className="bg-scroll flex justify-center items-center w-screen min-h-screen">
         <Image
           src={backgrounds[backgroundIndex]} // Use current background
           layout="fill"
-          objectFit="cover"
           alt="background"
-          className="-z-10"
+          className="-z-10 object-cover bg-center"
         />
-        <div className="flex flex-col items-center justify-center w-[95%] bg-transparent backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-28">
-          <div className={`transition-opacity duration-800 ${fade ? "opacity-100" : "opacity-0"}`}>
+        <div className="flex flex-col items-center justify-center w-[95%] bg-glass backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-28">
+          <div
+            className={`transition-opacity duration-1000 ${
+              fade ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-white p-10">
+              <h1 className="text-4xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5">
                 {quote?.text || "Welcome to Green Gains Fitness"}
               </h1>
               <p className="text-white">{quote?.author}</p>

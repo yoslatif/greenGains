@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import Image from "next/image";
 
 const config: Config = {
   content: [
@@ -38,6 +37,8 @@ const config: Config = {
           800: "#102693",
           900: "#091A7A",
         },
+        glass:
+          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0))",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
