@@ -93,7 +93,7 @@ export default function Home() {
   const [fade, setFade] = useState(true);
   const [backgroundIndex, setBackgroundIndex] = useState(0); // New state for background index
   // const backgrounds = ["/background.jpg", "/gymNeon.jpg", "/abstract-fitness.jpg", "/beachgym.jpg"]; // Array of background images
-  const backgrounds = ["/background.jpg"];
+  const backgrounds = ["/gymNeon.jpg"];
   
   const indexRef = useRef(0); // Declare indexRef variable
 
