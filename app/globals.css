@@ -287,3 +287,10 @@ blockquote {
 }
 
 
+.from-black {
+  --tw-gradient-from: #000 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  border-radius: 20px 20px 0 0 ;
+  width: 100%;
+}

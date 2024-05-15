@@ -16,7 +16,7 @@ export default function Services() {
             id: 2,
             name: "Online Coaching",
             description: "Tailored coaching regardless...",
-            imageUrl: "/zen-fitness.jpg"
+            imageUrl: "/armfit.jpg"
         },
         {
             id: 3,
