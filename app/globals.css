@@ -212,3 +212,41 @@ blockquote {
   color: #39ff14; /* Bright green */
   animation: neonGlow 10s ease-in-out infinite;
 }
+
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.hamburger .line {
+  width: 100%;
+  height: 3px;
+  background-color: #fff; /* White lines */
+  transition: all 0.3s ease; /* Smooth transition for all changes */
+}
+
+/* Hover effect for the hamburger lines */
+.hamburger:hover .line {
+  background-color: #00ff00; /* Change to green on hover */
+  width: 120%; /* Increase width */
+}
+
+/* Optional: Animate the lines to transform on click */
+.hamburger.active .line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
