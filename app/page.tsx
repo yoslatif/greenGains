@@ -1,11 +1,10 @@
 "use client";
-import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Quotes } from "../public/quotes.json";
+import About from "./components/about";
 import Services from "./components/services";
 import Testimonials from "./components/testimonials";
-import Footer from './components/footer';
-import About from './components/about';
 
 interface Quote {
   id: number;
@@ -23,6 +22,29 @@ export default function Home(props?: any) {
   const backgrounds = ["/gymNeon.jpg"];
 
   const indexRef = useRef(0); // Declare indexRef variable
+  const quoteRef = useRef<HTMLDivElement>(null); // Declare quoteRef variable used for quote div scroll animation
+  const serviceRef = useRef<HTMLDivElement>(null); // Declare serviceRef variable used for service div scroll animation
+
+  const { scrollYProgress: qouteScrollYProgress } = useScroll({
+    target: quoteRef,
+    offset: ["center", "center start"],
+  });
+
+  const { scrollYProgress: serviceScrollYProgress } = useScroll({
+    target: serviceRef,
+    offset: ["start start", "end center"],
+  });
+
+  console.log(qouteScrollYProgress);
+  const translate = useTransform(qouteScrollYProgress, [0, 1], [1, 0]);
+  const scaleX = useTransform(qouteScrollYProgress, [0, 1], [1, 3]);
+  const scaleY = useTransform(qouteScrollYProgress, [0, 1], [1, 3]);
+  const opacity = useTransform(qouteScrollYProgress, [0, 1], [1, 0]);
+
+  const serviceTranslate = useTransform(serviceScrollYProgress, [0, 1], [0, 1]);
+  const serviceScaleX = useTransform(serviceScrollYProgress, [1, 0], [3, 1]);
+  const serviceScaleY = useTransform(serviceScrollYProgress, [1, 0], [3, 1]);
+  const serviceOpacity = useTransform(serviceScrollYProgress, [0, 1], [1, 0]);
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {
@@ -46,36 +68,62 @@ export default function Home(props?: any) {
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-[200vh] relative overflow-hidden">
-      <div className="bg-fixed flex flex-col justify-center items-center w-full h-full">
-        <Image
-          src={backgrounds[backgroundIndex]} // Use current background
-          alt="background"
-          layout="fill"
-        />
-        <div className="flex flex-col items-center justify-center w-[95%] bg-glass backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-60">
-          <div
-            className={`transition-opacity duration-1000 ${
-              fade ? "opacity-100" : "opacity-0"
+    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
+      <div
+        className={`transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col`}
+      >
+        <motion.div
+          className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl"
+          ref={quoteRef}
+          style={{
+            x: translate,
+            scaleX: scaleX,
+            scaleY: scaleY,
+            opacity: opacity,
+          }}
+          id="Home"
+        >
+          <h1
+            className={`text-4xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5 duration-500 ${
+              fade ? "text-opacity-100" : "text-opacity-0"
             }`}
           >
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5">
-                {quote?.text || "Welcome to Green Gains Fitness"}
-              </h1>
-              <p className="text-white">{quote?.author}</p>
-            </div>
-          </div>
-          <div className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl">
-        <Services />
+            {quote?.text || "Welcome to Green Gains Fitness"}
+          </h1>
+          <p
+            className={`flex text-2xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5 duration-500 left-52 justify-end items-end w-full ${
+              fade ? "text-opacity-100" : "text-opacity-0"
+            }`}
+          >
+            - {quote?.author}
+          </p>
+        </motion.div>
       </div>
-      <div className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl">
+
+      <motion.div
+        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl border-2 border-white"
+        ref={serviceRef}
+        style={{
+          x: serviceTranslate,
+          scaleX: serviceScaleX,
+          scaleY: serviceScaleY,
+          opacity: serviceOpacity,
+        }}
+        id="Services"
+      >
+        <Services />
+      </motion.div>
+      <div
+        className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
+        id="Testimonials"
+      >
         <Testimonials />
       </div>
-          <About/>
-          
-        </div>
-        
+      <div
+        className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
+        id="About"
+      >
+        <About />
       </div>
     </div>
   );
