@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ServicesModal from "./modal";
 import Home from "../page";
+//hi
 function useOnClickOutside(ref: any, handler: any) {
   useEffect(() => {
     const listener = (event: { target: any }) => {
