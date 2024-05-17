@@ -1,34 +1,46 @@
+// ServicesModal.tsx
 "use client";
 
-import React from "react";
-import { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
-function useOnClickOutside(ref: any, handler: any) {
+interface ServiceModalProps {
+  serviceModal: {
+    name: string;
+    lorem: string; // Assuming 'lorem' is a string field for description
+  };
+  handleClickNav: (name: string) => void;
+  setShowModal: (show: boolean) => void;
+}
+
+function useOnClickOutside(ref: React.RefObject<HTMLDivElement>, handler: (event: MouseEvent | TouchEvent) => void) {
   useEffect(() => {
-    const listener = (event: { target: any }) => {
-      if (!ref.current || ref.current.contains(event.target)) {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
         return;
       }
       handler(event);
     };
+
     document.addEventListener("mousedown", listener);
     document.addEventListener("touchstart", listener);
     return () => {
       document.removeEventListener("mousedown", listener);
       document.removeEventListener("touchstart", listener);
     };
-  }, [ref, handler]);
+  }, [ref, handler]); // Dependencies should include all variables from the hook's closure
 }
 
-export default function ServicesModal(props?: any) {
-  const { serviceModal, handleClickNav, setShowModal } = props;
+const ServicesModal: React.FC<ServiceModalProps> = ({ serviceModal, handleClickNav, setShowModal }) => {
+  const refModal = useRef<HTMLDivElement>(null);
 
-  const refModal = React.useRef<HTMLDivElement>();
+  // Use the custom hook
+  useOnClickOutside(refModal, () => setShowModal(false));
+
   return (
-    <div ref={refModal} onMouseLeave={(ref) => setShowModal(false)}>
+    <div ref={refModal} onMouseLeave={() => setShowModal(false)} className="modal-container">
       <div className="justify-center items-center flex relative inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
-          {/*content*/}
+          {/* Modal content */}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
               <h3 className="text-3xl font-semibold text-black">
@@ -41,27 +53,30 @@ export default function ServicesModal(props?: any) {
                 ×
               </button>
             </div>
-            {/*body*/}
+            {/* Modal body */}
             <div className="relative p-6 flex-auto">
               <p className="my-4 text-black text-lg leading-relaxed">
                 {serviceModal.lorem}
               </p>
             </div>
+            {/* Footer */}
+            <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+              <button
+                className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => {
+                  handleClickNav(serviceModal.name);
+                  setShowModal(false);
+                }}
+              >
+                Learn More About {serviceModal.name}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-        <button
-          className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          onClick={() => {
-            handleClickNav(serviceModal.name);
-            setShowModal(false);
-          }}
-        >
-          Learn More About {serviceModal.name}
-        </button>
-      </div>
     </div>
   );
-}
+};
+
+export default ServicesModal;

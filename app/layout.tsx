@@ -6,6 +6,7 @@ import React from "react";
 import Services from './components/services';
 import Testimonials from "./components/testimonials";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
