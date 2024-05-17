@@ -3,13 +3,16 @@
 
 import React, { useRef, useEffect } from "react";
 
-interface ServiceModalProps {
+interface ServicesModalProps {
   serviceModal: {
+    id: number;
     name: string;
-    lorem: string; // Assuming 'lorem' is a string field for description
+    description: string;
+    imageUrl: string;
+    lorem: string;
   };
-  handleClickNav: (name: string) => void;
-  setShowModal: (show: boolean) => void;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClickNav: (name: string) => void; // This is the prop that seems to be missing
 }
 
 function useOnClickOutside(ref: React.RefObject<HTMLDivElement>, handler: (event: MouseEvent | TouchEvent) => void) {
