@@ -33,7 +33,7 @@ function useOnClickOutside(ref: React.RefObject<HTMLDivElement>, handler: (event
   }, [ref, handler]); // Dependencies should include all variables from the hook's closure
 }
 
-const ServicesModal: React.FC<ServiceModalProps> = ({ serviceModal, handleClickNav, setShowModal }) => {
+const ServicesModal: React.FC<ServicesModalProps> = ({ serviceModal, handleClickNav, setShowModal }) => {
   const refModal = useRef<HTMLDivElement>(null);
 
   // Use the custom hook
