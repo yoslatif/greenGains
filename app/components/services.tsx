@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ServicesModal from "./modal";
 import Home from "../page";
-//hi
+
 function useOnClickOutside(ref: any, handler: any) {
   useEffect(() => {
     const listener = (event: { target: any }) => {
@@ -101,8 +101,9 @@ export default function Services() {
               {showModal && (
                 <ServicesModal
                   serviceModal={service}
-                  setShowModal={setShowModal}
-                />
+                  setShowModal={setShowModal} handleClickNav={function (name: string): void {
+                    throw new Error("Function not implemented.");
+                  } }                />
               )}
             </div>
           </div>
