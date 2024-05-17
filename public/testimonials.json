@@ -1,40 +1,42 @@
+
+
 {
     "Testimonials": [
         {
             "id": "1",
             "name": "John Cena",
             "quote": "I feel great it made me feel like I am unstoppable on and off the field. And it made me feel confident in myself again. Before he helped me change my life around I was a big kid get made fun of for my weight now I feel great and everyone is happy for me and he helped me lose over 20 pounds in 2-3 months he really know what he's doing and talking bout he motivated me to lose weight and how to calorie track.Thank you for teaching me to lose over 20 pounds in 2-3 months I am very greatful and proud of my self I am very confident again and feel like a new person he knows what he is taling about and has thought me alot and how to take care of myself",
-            "image": "images/testimonial1.jpg"
+            "image": "/happyguyexerc.jpeg" 
         },
         {
             "id": "2",
             "name": "Alan Habibi",
             "quote": "It has been really enjoying the program you set for me. It fits in perfect to my busy schedule and helped me focus on a lot of things I was overlooking like muscle mobility and getting pain free workouts. Working out has become my favorite part of the day since I took your advice. And after my ankle injury, I really appreciated how we swapped focus on recovery. The pain went away quickly and I felt better much sooner than I expected! Looking forward to continuing this 🔥",
-            "image": "images/testimonial2.jpg"
+            "image": "/yeThumbsTest.jpeg" 
         },
         {
             "id": "3",
             "name": "Beyonce",
             "quote": "Joining this fitness program has transformed my daily routine. I was initially hesitant due to my hectic work life, but the flexibility and personal attention have made all the difference. Especially the sessions focused on core strength have alleviated my back pain, something I've struggled with for years. Your personalized approach has not only improved my physical health but my mental well-being too. I'm truly grateful and excited to see what the next months bring!",
-            "image": "images/testimonial3.jpg"
+            "image": "/girlthumbsup.jpeg"
         },
         {
             "id": "4",
             "name": "Zendaya",
             "quote": "I’ve been blown away by the results of our training sessions. Balancing strength training with cardiovascular health was something I had never managed to do on my own. Your guidance has been crucial in helping me understand the importance of a balanced routine. Ever since we adjusted the workouts to be joint-friendly, I've noticed a significant decrease in discomfort and an increase in stamina. Thank you for helping me achieve my fitness goals in such a sustainable and enjoyable way!",
-            "image": "images/testimonial4.jpg"
+            "image": "/rockHappy.webp"
         },
         {
             "id": "5",
             "name": "Michael Jackson",
             "quote": "This program has been a game-changer for me. The tailored exercises and dietary advice have significantly improved my energy levels throughout the day. Your focus on mindful eating and functional fitness has helped me overcome my plateau and get back into shape after my pregnancy. I am now more active and energetic than ever, and the positive effects on my mood and health are so rewarding. Can’t wait to continue progressing with your fantastic guidance!",
-            "image": "images/testimonial5.jpg"
+            "image": "/peterG.jpeg"
         },
         {
             "id": "6",
             "name": "Kanye West",
             "quote": "Your program has perfectly integrated into my lifestyle, and the benefits have been phenomenal. The targeted mobility exercises and personalized workout schedules have greatly enhanced my overall flexibility and reduced the aches that used to be part of my daily life. Your support during my shoulder rehab was invaluable, and I was impressed with how quickly I was able to return to full strength. I look forward to each session and highly recommend your services to anyone looking for a comprehensive and caring fitness plan.",
-            "image": "images/testimonial6.jpg"
+            "image": "/patrickweights.jpeg"
         }
     ]
 }

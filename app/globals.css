@@ -296,3 +296,19 @@ blockquote {
 }
 
 
+
+
+
+
+/* For making images circular and styling the text */
+.rounded-full {
+  border-radius: 50%;
+}
+
+.testimonial-container {
+  min-height: 300px; /* Ensure enough height for content */
+}
+
+.testimonial-text {
+  transition: opacity 1s ease, transform 1s ease;
+}
