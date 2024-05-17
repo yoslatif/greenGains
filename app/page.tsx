@@ -84,11 +84,12 @@ interface Quote {
   author: string;
 }
 
-export default function Home() {
+export default function Home(props?: any) {
   const [quotes, setQuotes] = useState<Quote[]>(Quotes);
   const [quote, setQuote] = useState<Quote>();
   const [fade, setFade] = useState(true);
   const [backgroundIndex, setBackgroundIndex] = useState(0); // New state for background index
+  const { setShowModal, serviceModal } = props;
   // const backgrounds = ["/background.jpg", "/gymNeon.jpg", "/abstract-fitness.jpg", "/beachgym.jpg"]; // Array of background images
   const backgrounds = ["/gymNeon.jpg"];
 
@@ -116,15 +117,14 @@ export default function Home() {
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-screen relative overflow-hidden">
-      <div className="bg-scroll flex justify-center items-center w-screen min-h-screen">
+    <div className="w-screen min-h-[200vh] relative overflow-hidden">
+      <div className="bg-fixed flex flex-col justify-center items-center w-full h-full">
         <Image
           src={backgrounds[backgroundIndex]} // Use current background
-          layout="fill"
           alt="background"
-          className="-z-10 object-cover bg-center"
+          layout="fill"
         />
-        <div className="flex flex-col items-center justify-center w-[95%] bg-glass backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-28">
+        <div className="flex flex-col items-center justify-center w-[95%] bg-glass backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-60">
           <div
             className={`transition-opacity duration-1000 ${
               fade ? "opacity-100" : "opacity-0"

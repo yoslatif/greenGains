@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Header() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -27,7 +28,7 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-between bg-glass backdrop-blur-2xl absolute w-full p-5 z-20">
+    <div className="flex flex-row items-center justify-between bg-glass backdrop-blur-2xl absolute w-screen p-5 z-20 mb-20">
       <Link href="/" passHref>
         <Image
           src="/logo.png"
@@ -42,29 +43,15 @@ export default function Header() {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={toggleDropdown}
-          className="flex flex-col justify-around w-10 h-10 bg-glass border border-gray-800 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+          className="flex flex-col justify-around w-10 h-10 bg-glass rounded-lg p-1 "
         >
-          <div
+          <RxHamburgerMenu
             className={
               isDropdownVisible
-                ? `transform rotate-90 -translate-x-3 translate-y-3 bg-white h-1 w-full transition-all ease-in duration-300`
-                : `w-full h-1 bg-white transition-all ease-in duration-300 hover:bg-green hover:w-[120%]`
+                ? "transition-all transform rotate-90 bg-transparent w-full h-full text-green-300 scale-150"
+                : "bg-transparent w-full h-full hover:text-green-300 scale-110"
             }
-          ></div>
-          <div
-            className={
-              isDropdownVisible
-                ? `transform rotate-90 translate-x-0.5 translate-y-[0.1rem]  bg-white h-1 w-full transition-all ease-in duration-300`
-                : `w-full h-1 bg-white transition-all ease-in duration-300 hover:bg-green hover:w-[120%]`
-            }
-          ></div>
-          <div
-            className={
-              isDropdownVisible
-                ? `transform rotate-90 translate-x-3 -translate-y-2 bg-white h-1 w-full transition-all ease-in duration-300`
-                : `w-full h-1 bg-white transition-all ease-in duration-300 hover:bg-green hover:w-[120%]`
-            }
-          ></div>
+          />
         </button>
         {isDropdownVisible && (
           <div
