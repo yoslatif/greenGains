@@ -60,6 +60,12 @@
 //     );
 // }
 
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import testimonialsData from '../../public/testimonials.json';
@@ -79,7 +85,7 @@ export default function Testimonials() {
             setIndex((prevIndex) => 
                 prevIndex === testimonialsData.Testimonials.length - 1 ? 0 : prevIndex + 1
             );
-        }, 4000); // Change testimonial every 4 seconds
+        }, 3000); // Change testimonial every 3 seconds
         return () => clearInterval(timer);
     }, []);
 
@@ -94,16 +100,16 @@ export default function Testimonials() {
     };
 
     return (
-        <div className="relative w-full overflow-hidden h-120 flex items-center">
+        <div className="relative w-full overflow-hidden h-140 flex items-center">
             <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${index * 100}%)` }}>
                 {testimonialsData.Testimonials.map((testimonial, testIndex) => (
                     <div key={testimonial.id} className={getTestimonialStyle(testIndex) + " flex-shrink-0 w-full flex flex-col items-center text-center p-5"}>
                         <div className="relative w-full flex justify-center items-end">
                             <Image src={testimonial.image} alt={testimonial.name} width={500} height={500} className="rounded-lg object-cover" />
-                            <div className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent"></div>
+                            <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent"></div>
                         </div>
                         <blockquote className="text-white mt-[-20px] z-10">
-                            "{testimonial.quote}" - <strong>{testimonial.name}</strong>
+                            &ldquo;{testimonial.quote}&rdquo; - <strong>{testimonial.name}</strong>
                         </blockquote>
                     </div>
                 ))}
