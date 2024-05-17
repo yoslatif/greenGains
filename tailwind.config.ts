@@ -60,6 +60,7 @@ const config: Config = {
       },
       animation: {
         "slide-in": "slide-in 1s ease var(--slide-in-delay) forwards",
+        fade: "fade 1s ease var(--fade-delay) forwards",
       },
       keyframes: {
         "slide-in": {
@@ -69,6 +70,14 @@ const config: Config = {
           },
           "100%": {
             transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
+        fade: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
             opacity: "1",
           },
         },
