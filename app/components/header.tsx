@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import About from "./about";
 
 export default function Header() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -64,12 +65,9 @@ export default function Header() {
             >
               Home
             </Link>
-            <Link
-              href="/about"
-              className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              About
-            </Link>
+            <Link href="#aboutSection" scroll={false} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200">
+  About
+</Link>
             <Link
               href="/contact"
               className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200"

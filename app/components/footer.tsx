@@ -11,7 +11,7 @@ const Footer = () => {
                 <a href="https://www.instagram.com/greengainsfitness_/" target="_blank" rel="noopener noreferrer" className="hover:text-green-500">
                     <FaInstagram size={20} />
                 </a>
-                <a href="mailto:yoslatif@gmail.com" className="hover:text-green-500">
+                <a href="mailto:greengainsfitness28@gmail.com" className="hover:text-green-500">
                     <MdEmail size={20} />
                 </a>
                 <a href="https://calendly.com/greengainsfitness" target="_blank" rel="noopener noreferrer" className="hover:text-green-500">

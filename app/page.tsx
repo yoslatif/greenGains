@@ -5,6 +5,7 @@ import { Quotes } from "../public/quotes.json";
 import Services from "./components/services";
 import Testimonials from "./components/testimonials";
 import Footer from './components/footer';
+import About from "./components/about";
 
 
 interface Quote {
@@ -68,6 +69,9 @@ export default function Home(props?: any) {
           </div>
           <Services />
           <Testimonials />
+          <div id="aboutSection" className="about-container">
+  <About />
+</div>
           
         </div>
         

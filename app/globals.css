@@ -312,3 +312,46 @@ blockquote {
 .testimonial-text {
   transition: opacity 1s ease, transform 1s ease;
 }
+
+/* styles/global.css */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.headshot, .bio {
+  transition: transform 1.5s ease-out, opacity 1.5s ease-in;
+}
+
+.headshot {
+  position: absolute;
+  width: 300px;
+  height: 500px;
+  left: 50%;
+  transform: translateX(-50%); /* Center on initial view */
+  z-index: 2;
+}
+
+.bio {
+  color: white;
+  position: absolute;
+  width: 50%;
+  right: -50%; /* Start hidden behind the image */
+  opacity: 0;
+  transition-delay: 0.5s; /* Delay to coordinate with the image moving */
+}
+
+/* When in view */
+.container.in-view .headshot {
+  transform: translateX(-150%); /* Move to the left */
+}
+
+.container.in-view .bio {
+  right: 10%; /* Move text into view */
+  opacity: 1;
+}
