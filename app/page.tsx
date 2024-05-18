@@ -77,7 +77,6 @@ export default function Home(props?: any) {
         </div>
         
       </div>
-      <Footer />
     </div>
   );
 }

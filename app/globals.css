@@ -355,3 +355,49 @@ blockquote {
   right: 10%; /* Move text into view */
   opacity: 1;
 }
+
+
+/* Base styles above remain unchanged */
+
+@media (max-width: 768px) {
+  .headshot, .bio {
+    transition: transform 1s ease-out, opacity 1s ease-in;
+  }
+
+  .headshot {
+    width: 200px; /* Smaller size */
+    height: 200px; /* Smaller size */
+    transform: translateX(-50%); /* Center on initial view */
+  }
+
+  .bio {
+    width: 80%; /* More screen percentage */
+    font-size: 0.8rem; /* Smaller text */
+  }
+
+  .container.in-view .headshot {
+    transform: translateX(-120%); /* Adjust position to not go too far on small screens */
+  }
+
+  .container.in-view .bio {
+    right: 5%; /* Adjust text position closer to center */
+  }
+}
+
+/* Additional styles to ensure the carousel functions smoothly on mobile */
+.testimonial-container {
+  flex-direction: column; /* Stack elements on smaller screens */
+}
+
+.testimonial-text {
+  margin-top: 20px; /* Add some space between the image and text */
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 2rem 1rem; 
+    width: 90%;  
+  }
+}
+
+

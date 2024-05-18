@@ -89,6 +89,8 @@ export default function Testimonials() {
         return () => clearInterval(timer);
     }, []);
 
+    
+
     const getTestimonialStyle = (testIndex: number) => {
         let style = "transition-transform duration-1000 transform ";
         if (testIndex === index) {
