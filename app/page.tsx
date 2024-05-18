@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { Quotes } from "../public/quotes.json";
 import Services from "./components/services";
 import Testimonials from "./components/testimonials";
-import Footer from "./components/footer";
+import Footer from './components/footer';
+import About from './components/about';
 
 interface Quote {
   id: number;
@@ -45,34 +46,38 @@ export default function Home(props?: any) {
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
-      <div
-        className={`transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col`}
-      >
-        <div className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl">
-          <h1
-            className={`text-4xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5 duration-500 ${
-              fade ? "text-opacity-100" : "text-opacity-0"
+    <div className="w-screen min-h-[200vh] relative overflow-hidden">
+      <div className="bg-fixed flex flex-col justify-center items-center w-full h-full">
+        <Image
+          src={backgrounds[backgroundIndex]} // Use current background
+          alt="background"
+          layout="fill"
+        />
+        <div className="flex flex-col items-center justify-center w-[95%] bg-glass backdrop-blur-3xl rounded-xl p-5 shadow-2xl mt-60">
+          <div
+            className={`transition-opacity duration-1000 ${
+              fade ? "opacity-100" : "opacity-0"
             }`}
           >
-            {quote?.text || "Welcome to Green Gains Fitness"}
-          </h1>
-          <p
-            className={`flex text-2xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5 duration-500 left-52 justify-end items-end w-full ${
-              fade ? "text-opacity-100" : "text-opacity-0"
-            }`}
-          >
-            - {quote?.author}
-          </p>
-        </div>
-      </div>
-
-      <div className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-white p-10 max-sm:text-xl max-sm:p-5">
+                {quote?.text || "Welcome to Green Gains Fitness"}
+              </h1>
+              <p className="text-white">{quote?.author}</p>
+            </div>
+          </div>
+          <div className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl">
         <Services />
       </div>
       <div className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl">
         <Testimonials />
       </div>
+          <About/>
+          
+        </div>
+        
+      </div>
+      <Footer />
     </div>
   );
 }
