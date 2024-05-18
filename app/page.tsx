@@ -45,7 +45,7 @@ export default function Home(props?: any) {
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[#ffc399] bg-fixed bg-center bg-no-repeat bg-cover items-center justify-center flex flex-col">
+    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
       <div
         className={`transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col`}
       >
