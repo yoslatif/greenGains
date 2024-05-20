@@ -1,8 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ServicesModal from "./modal";
-import Home from "../page";
 
 function useOnClickOutside(ref: any, handler: any) {
   useEffect(() => {
@@ -31,7 +29,7 @@ function useOnClickOutside(ref: any, handler: any) {
   }, [ref, handler]);
 }
 
-export default function Services() {
+export default function Services({ ref }: { ref: React.Ref<HTMLDivElement> }) {
   const [showModal, setShowModal] = React.useState(false);
   const refModal = useRef<HTMLDivElement>();
   const handleClickNav = (e: any) => scrollTo(e.target.id);
@@ -67,7 +65,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5" ref={ref}>
       {services.map((service, index) => (
         <div
           key={index}
@@ -101,9 +99,11 @@ export default function Services() {
               {showModal && (
                 <ServicesModal
                   serviceModal={service}
-                  setShowModal={setShowModal} handleClickNav={function (name: string): void {
+                  setShowModal={setShowModal}
+                  handleClickNav={function (name: string): void {
                     throw new Error("Function not implemented.");
-                  } }                />
+                  }}
+                />
               )}
             </div>
           </div>

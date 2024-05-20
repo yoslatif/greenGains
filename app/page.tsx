@@ -12,6 +12,11 @@ interface Quote {
   author: string;
 }
 
+const serviceVariants = {
+  inView: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  outView: { opacity: 0, scale: 0, transition: { duration: 0.5 } },
+};
+
 export default function Home(props?: any) {
   const [quotes, setQuotes] = useState<Quote[]>(Quotes);
   const [quote, setQuote] = useState<Quote>();
@@ -32,18 +37,17 @@ export default function Home(props?: any) {
 
   const { scrollYProgress: serviceScrollYProgress } = useScroll({
     target: serviceRef,
-    offset: ["start start", "end center"],
+    offset: ["1 1.4", "1 2.5"],
   });
 
-  console.log(qouteScrollYProgress);
   const translate = useTransform(qouteScrollYProgress, [0, 1], [1, 0]);
   const scaleX = useTransform(qouteScrollYProgress, [0, 1], [1, 3]);
   const scaleY = useTransform(qouteScrollYProgress, [0, 1], [1, 3]);
   const opacity = useTransform(qouteScrollYProgress, [0, 1], [1, 0]);
 
-  const serviceTranslate = useTransform(serviceScrollYProgress, [0, 1], [0, 1]);
-  const serviceScaleX = useTransform(serviceScrollYProgress, [1, 0], [3, 1]);
-  const serviceScaleY = useTransform(serviceScrollYProgress, [1, 0], [3, 1]);
+  const serviceTranslate = useTransform(serviceScrollYProgress, [0, 1], [1, 0]);
+  const serviceScaleX = useTransform(serviceScrollYProgress, [1, 0], [5, 0.9]);
+  const serviceScaleY = useTransform(serviceScrollYProgress, [1, 0], [5, 0.9]);
   const serviceOpacity = useTransform(serviceScrollYProgress, [0, 1], [1, 0]);
 
   useEffect(() => {
@@ -101,17 +105,21 @@ export default function Home(props?: any) {
       </div>
 
       <motion.div
-        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl border-2 border-white"
+        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl opacity-0"
+        initial={{ opacity: 0, scale: 4 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        animate="inView"
+        variants={serviceVariants}
         ref={serviceRef}
-        style={{
-          x: serviceTranslate,
-          scaleX: serviceScaleX,
-          scaleY: serviceScaleY,
-          opacity: serviceOpacity,
-        }}
+        // style={{
+        //   x: serviceTranslate,
+        //   scaleX: serviceScaleX,
+        //   scaleY: serviceScaleY,
+        //   opacity: serviceOpacity,
+        // }}
         id="Services"
       >
-        <Services />
+        <Services ref={serviceRef} />
       </motion.div>
       <div
         className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"

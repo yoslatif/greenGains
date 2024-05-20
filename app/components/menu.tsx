@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { motion, useCycle } from "framer-motion";
+import { useRef } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaWeightHanging } from "react-icons/fa6";
 import { FcAbout } from "react-icons/fc";
@@ -8,7 +8,7 @@ import { MdContactPage } from "react-icons/md";
 
 const menuVariants = {
   open: {
-    y: 0,
+    y: 1,
     opacity: 1,
     transition: {
       y: { stiffness: 1000, velocity: -100 },
@@ -35,13 +35,13 @@ const navVariants = {
 };
 
 const itemIds = [
-  { id: 0, name: "Home", icon: <FaHome />, link: "/" },
-  { id: 1, name: "About", icon: <FcAbout />, link: "/#About" },
-  { id: 2, name: "Services", icon: <FaWeightHanging />, link: "/#Services" },
-  { id: 3, name: "Contact", icon: <MdContactPage />, link: "/#Contact" },
+  { id: 0, name: "Home", icon: <FaHome />, link: "Home" },
+  { id: 1, name: "About", icon: <FcAbout />, link: "About" },
+  { id: 2, name: "Services", icon: <FaWeightHanging />, link: "Services" },
+  { id: 3, name: "Contact", icon: <MdContactPage />, link: "Contact" },
 ];
 
-const Path = ({ props }: { props: any }) => (
+const Path = ({ props }: { props?: any }) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
@@ -51,32 +51,18 @@ const Path = ({ props }: { props: any }) => (
   />
 );
 
-// const MenuToggle = ({ toggle }) => (
-//   <button onClick={toggle}>
-//     <svg width="23" height="23" viewBox="0 0 23 23">
-//       <Path
-//         variants={{
-//           closed: { d: "M 2 2.5 L 20 2.5" },
-//           open: { d: "M 3 16.5 L 17 2.5" },
-//         }}
-//       />
-//       <Path
-//         d="M 2 9.423 L 20 9.423"
-//         variants={{
-//           closed: { opacity: 1 },
-//           open: { opacity: 0 },
-//         }}
-//         transition={{ duration: 0.1 }}
-//       />
-//       <Path
-//         variants={{
-//           closed: { d: "M 2 16.346 L 20 16.346" },
-//           open: { d: "M 3 2.5 L 17 16.346" },
-//         }}
-//       />
-//     </svg>
-//   </button>
-// );
+// const useDimensions = (ref: React.Ref<HTMLDivElement>) => {
+//   const dimensions = useRef({ width: 0, height: 0 });
+
+//   useEffect(() => {
+//     if (ref !== null && typeof ref !== "function") {
+//       dimensions.current.width = ref.current.offsetWidth;
+//       dimensions.current.height = ref.current.offsetHeight;
+//     }
+//   }, [ref]);
+
+//   return dimensions.current;
+// };
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -98,63 +84,90 @@ const sidebar = {
   },
 };
 
-export function MenuToggle({
-  toggle,
-  isOpen,
-  dropdownRef,
-}: {
-  toggle: any;
-  isOpen: any;
-  dropdownRef: any;
-}) {
-  const router = useRouter();
-  const handleClick = (link: string) => {
-    router.push(`/${link}`);
-  };
+const Navigation = () => (
+  <motion.ul
+    variants={navVariants}
+    className="absolute w-[300px] top-0 bottom-0 right-0"
+  >
+    {itemIds.map((i) => (
+      <MenuItem i={i} key={i.id} />
+    ))}
+  </motion.ul>
+);
 
-  const MenuItem = ({ index }: { index: any }) => {
-    const style = {
-      border: `2px solid ${colors[index.id]}`,
-      backgroundColor: colors[index.id],
-    };
-    return (
-      <motion.li
-        variants={menuVariants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <div className="w-[40px] h-[40px] rounded-md flex" style={style}>
-          <span className="m-auto text-white w-full h-full p-2">
-            {index.icon}
-          </span>
-        </div>
-        <div
-          className="rounded-md w-[200px] h-auto flex-1 m-5"
-          style={style}
-          onClick={() => handleClick(index.link)}
-        >
-          <h1 className="text-3xl text-white">{index.name}</h1>
-        </div>
-      </motion.li>
-    );
+const MenuItem = ({ i }: { i: any }) => {
+  const style = {
+    border: `2px solid ${colors[i.id]}`,
+    backgroundColor: colors[i.id],
   };
   return (
-    <motion.nav
-      className="w-[300px] h-full bg-red absolute flex flex-col justify-start top-40 right-0 p-5 z-20"
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      ref={dropdownRef}
-      variants={sidebar}
+    <motion.li
+      variants={menuVariants}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className="relative mb-5 flex items-center cursor-pointer w-full h-full mt-32"
     >
-      <motion.ul
-        variants={navVariants}
-        className="flex flex-col h-full w-full"
-        onMouseLeave={() => toggle(false)}
+      <div
+        className="w-full h-[40px] rounded-xl m-5 flex flex-row items-center justify-center cursor-pointer"
+        style={style}
+        onClick={() => handleClick(i.link)}
       >
-        {itemIds.map((index: any) => (
-          <MenuItem key={index} index={index} />
-        ))}
-      </motion.ul>
+        {i.icon}
+        {i.name}
+      </div>
+    </motion.li>
+  );
+};
+
+const MenuToggle = ({ toggle }: { toggle: any }) => {
+  return (
+    <button
+      onClick={toggle}
+      className=" w-[50px] h-[50px] rounded-2xl z-50 flex flex-row items-center justify-center cursor-pointer absolute right-5"
+    >
+      <FaHome className="h-full w-full text-white" />
+    </button>
+  );
+};
+const handleClick = (link: string) => {
+  const element = document.getElementById(link);
+  element?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
+
+export function MenuToggled() {
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isOpened, toggleOpen] = useCycle(false, true);
+
+  //   useEffect(() => {
+  //     const handleClickOutside = (event: MouseEvent) => {
+  //       // Specify MouseEvent as the type for event
+  //       if (
+  //         dropdownRef.current &&
+  //         !dropdownRef.current.contains(event.target as Node)
+  //       ) {
+  //         toggleOpen = false;
+  //       }
+  //     };
+
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //     return () => {
+  //       document.removeEventListener("mousedown", handleClickOutside);
+  //     };
+  //   }, []);
+
+  return (
+    <motion.nav
+      initial={false}
+      animate={isOpened ? "open" : "closed"}
+      ref={dropdownRef}
+    >
+      <motion.div className="relative w-[300px] bg-white">
+        <MenuToggle toggle={() => toggleOpen()} />
+        <Navigation />
+      </motion.div>
     </motion.nav>
   );
 }

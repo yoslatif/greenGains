@@ -1,6 +1,6 @@
 // components/About.tsx
-import React, { useRef, useEffect } from "react";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const About = () => {
   const refContainer = useRef(null);
@@ -47,8 +47,10 @@ const About = () => {
       <div className="bio">
         <h2 className="text-3xl font-bold mb-4">Coach Sukhpreet</h2>
         <p className="text-md">
-                        My journey began in 2014, inspired by parkour athlete Tim Shieff&hellip; I&apos;ve been driven by a deep desire to reclaim my health and well-being.
-                    </p>
+          My journey began in 2014, inspired by parkour athlete Tim
+          Shieff&hellip; I&apos;ve been driven by a deep desire to reclaim my
+          health and well-being.
+        </p>
       </div>
     </div>
   );
