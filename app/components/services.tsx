@@ -2,38 +2,37 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import ServicesModal from "./modal";
 
-function useOnClickOutside(ref: any, handler: any) {
-  useEffect(() => {
-    const listener = (event: { target: any }) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-      handler(event);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        handler(e);
-      }
-    });
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-      document.removeEventListener("keydown", (e) => {
+export default function Services() {
+  const [showModal, setShowModal] = React.useState(false);
+  const refModal = useRef<HTMLDivElement>(null);
+  const handleClickNav = (e: any) => scrollTo(e.target.id);
+  useOnClickOutside();
+  function useOnClickOutside() {
+    useEffect(() => {
+      const listener = (event: { target: any }) => {
+        if (!refModal.current || refModal.current.contains(event.target)) {
+          return;
+        }
+        setShowModal(false);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-          handler(e);
+          setShowModal(false);
         }
       });
-    };
-  }, [ref, handler]);
-}
-
-export default function Services({ ref }: { ref: React.Ref<HTMLDivElement> }) {
-  const [showModal, setShowModal] = React.useState(false);
-  const refModal = useRef<HTMLDivElement>();
-  const handleClickNav = (e: any) => scrollTo(e.target.id);
-  useOnClickOutside(refModal, () => setShowModal(false));
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+        document.removeEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            setShowModal(false);
+          }
+        });
+      };
+    }, []);
+  }
   const services = [
     {
       id: 1,
@@ -65,14 +64,17 @@ export default function Services({ ref }: { ref: React.Ref<HTMLDivElement> }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5" ref={ref}>
+    <div
+      className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 max-md:h-full max-md:w-full"
+      ref={refModal}
+    >
       {services.map((service, index) => (
         <div
           key={index}
           className={
             showModal
-              ? "target:opacity-100 target:w-screen target:h-full target:row-span-3 p-2 opacity-10 hover:transition-opacity hover:duration-500 hover:opacity-100 relative overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 rounded-xl"
-              : "relative overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 rounded-xl"
+              ? "active:opacity-100 active:w-screen active:h-screen active:row-span-3 p-2 opacity-0 hover:transition-opacity hover:duration-500 hover:opacity-100 relative overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 rounded-xl active:overflow-visible active:md:col-span-3"
+              : "relative overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 rounded-xl h-full w-full"
           }
         >
           <Image
@@ -80,11 +82,17 @@ export default function Services({ ref }: { ref: React.Ref<HTMLDivElement> }) {
             alt={service.name}
             width={500}
             height={300}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full absolute"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 opacity-0 hover:transition-opacity hover:duration-500 hover:opacity-100">
             <div className="text-white text-center">
-              <h2 className="text-xl font-bold mb-2">{service.name}</h2>
+              <h2
+                className={
+                  showModal ? "text-opacity-50" : "text-xl font-bold mb-2"
+                }
+              >
+                {service.name}
+              </h2>
               <p className="mb-4">{service.description}</p>
               <button
                 className={

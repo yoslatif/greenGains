@@ -1,6 +1,6 @@
 "use client";
-import { motion, useCycle } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import { FaHome } from "react-icons/fa";
 import { FaWeightHanging } from "react-icons/fa6";
 import { FcAbout } from "react-icons/fc";
@@ -13,6 +13,7 @@ const menuVariants = {
     transition: {
       y: { stiffness: 1000, velocity: -100 },
     },
+    zIndex: 30,
   },
   closed: {
     y: 50,
@@ -20,6 +21,7 @@ const menuVariants = {
     transition: {
       y: { stiffness: 1000 },
     },
+    zIndex: -30,
   },
 };
 
@@ -41,40 +43,15 @@ const itemIds = [
   { id: 3, name: "Contact", icon: <MdContactPage />, link: "Contact" },
 ];
 
-const Path = ({ props }: { props?: any }) => (
-  <motion.path
-    fill="transparent"
-    strokeWidth="3"
-    stroke="hsl(0, 0%, 18%)"
-    strokeLinecap="round"
-    {...props}
-  />
-);
-
-// const useDimensions = (ref: React.Ref<HTMLDivElement>) => {
-//   const dimensions = useRef({ width: 0, height: 0 });
-
-//   useEffect(() => {
-//     if (ref !== null && typeof ref !== "function") {
-//       dimensions.current.width = ref.current.offsetWidth;
-//       dimensions.current.height = ref.current.offsetHeight;
-//     }
-//   }, [ref]);
-
-//   return dimensions.current;
-// };
-
 const sidebar = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+  open: {
     transition: {
       type: "spring",
       stiffness: 20,
       restDelta: 2,
     },
-  }),
+  },
   closed: {
-    clipPath: "circle(30px at 40px 40px)",
     transition: {
       delay: 0.5,
       type: "spring",
@@ -84,18 +61,18 @@ const sidebar = {
   },
 };
 
-const Navigation = () => (
+const Navigation = ({ toggle }: { toggle: any }) => (
   <motion.ul
     variants={navVariants}
-    className="absolute w-[300px] top-0 bottom-0 right-0"
+    className={"absolute w-[300px] top-0 bottom-0 right-0 bg-white"}
   >
     {itemIds.map((i) => (
-      <MenuItem i={i} key={i.id} />
+      <MenuItem i={i} key={i.id} toggle={toggle} />
     ))}
   </motion.ul>
 );
 
-const MenuItem = ({ i }: { i: any }) => {
+const MenuItem = ({ i, toggle }: { i: any; toggle: any }) => {
   const style = {
     border: `2px solid ${colors[i.id]}`,
     backgroundColor: colors[i.id],
@@ -105,10 +82,14 @@ const MenuItem = ({ i }: { i: any }) => {
       variants={menuVariants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      className="relative mb-5 flex items-center cursor-pointer w-full h-full mt-32"
+      className={
+        toggle
+          ? "relative mb-5 flex items-center cursor-pointer w-full h-full mt-20 -z-60"
+          : "relative mb-5 flex items-center cursor-pointer w-full h-full mt-20 z-30"
+      }
     >
       <div
-        className="w-full h-[40px] rounded-xl m-5 flex flex-row items-center justify-center cursor-pointer"
+        className="w-full h-[50px] rounded-xl m-5 flex flex-row items-center justify-around cursor-pointer text-2xl"
         style={style}
         onClick={() => handleClick(i.link)}
       >
@@ -123,9 +104,9 @@ const MenuToggle = ({ toggle }: { toggle: any }) => {
   return (
     <button
       onClick={toggle}
-      className=" w-[50px] h-[50px] rounded-2xl z-50 flex flex-row items-center justify-center cursor-pointer absolute right-5"
+      className="w-12 h-12 rounded-2xl z-50 block items-center justify-center cursor-pointer absolute right-5"
     >
-      <FaHome className="h-full w-full text-white" />
+      {/* <FaHome className="h-full w-full text-white" /> */}
     </button>
   );
 };
@@ -137,9 +118,20 @@ const handleClick = (link: string) => {
   });
 };
 
-export function MenuToggled() {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [isOpened, toggleOpen] = useCycle(false, true);
+export function MenuToggled({
+  dropdownRef,
+  isOpen,
+  setIsOpen,
+  toggle,
+}: {
+  dropdownRef: React.ForwardedRef<HTMLDivElement>;
+  isOpen: any;
+  setIsOpen: any;
+  toggle: any;
+}) {
+  //   const dropdownRef = useRef<HTMLDivElement>(null);
+  //   const [isOpen, setIsOpen] = useState(false);
+  //   const toggle = () => setIsOpen((prevOpen) => !prevOpen);
 
   //   useEffect(() => {
   //     const handleClickOutside = (event: MouseEvent) => {
@@ -148,7 +140,7 @@ export function MenuToggled() {
   //         dropdownRef.current &&
   //         !dropdownRef.current.contains(event.target as Node)
   //       ) {
-  //         toggleOpen = false;
+  //         setIsOpen(false);
   //       }
   //     };
 
@@ -161,12 +153,15 @@ export function MenuToggled() {
   return (
     <motion.nav
       initial={false}
-      animate={isOpened ? "open" : "closed"}
+      animate={isOpen ? "open" : "closed"}
       ref={dropdownRef}
+      variants={sidebar}
+      className={
+        isOpen ? "relative w-[300px] top-0 bottom-0 right-0 bg-white" : "hidden"
+      }
     >
-      <motion.div className="relative w-[300px] bg-white">
-        <MenuToggle toggle={() => toggleOpen()} />
-        <Navigation />
+      <motion.div className="absolute w-[300px] bg-white h-full">
+        <Navigation toggle={toggle} />
       </motion.div>
     </motion.nav>
   );

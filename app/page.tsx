@@ -73,11 +73,9 @@ export default function Home(props?: any) {
 
   return (
     <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
-      <div
-        className={`transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col`}
-      >
+      <div className="transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col border-2 border-red-600 m-auto">
         <motion.div
-          className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl"
+          className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative"
           ref={quoteRef}
           style={{
             x: translate,
@@ -103,24 +101,22 @@ export default function Home(props?: any) {
           </p>
         </motion.div>
       </div>
-
-      <motion.div
-        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl opacity-0"
-        initial={{ opacity: 0, scale: 4 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        animate="inView"
-        variants={serviceVariants}
-        ref={serviceRef}
-        // style={{
-        //   x: serviceTranslate,
-        //   scaleX: serviceScaleX,
-        //   scaleY: serviceScaleY,
-        //   opacity: serviceOpacity,
-        // }}
+      <div
+        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 z-10"
         id="Services"
       >
-        <Services ref={serviceRef} />
-      </motion.div>
+        {/* <motion.div
+          className="w-full h-full"
+          ref={serviceRef}
+          style={{
+            x: serviceTranslate,
+            scaleX: serviceScaleX,
+            scaleY: serviceScaleY,
+            opacity: serviceOpacity,
+          }}        > */}
+        <Services />
+        {/* </motion.div> */}
+      </div>
       <div
         className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
         id="Testimonials"
