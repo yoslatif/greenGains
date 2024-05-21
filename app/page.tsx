@@ -73,7 +73,7 @@ export default function Home(props?: any) {
 
   return (
     <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
-      <div className="transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col border-2 border-red-600 m-auto">
+      <div className="transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col m-auto">
         <motion.div
           className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative"
           ref={quoteRef}
@@ -102,7 +102,7 @@ export default function Home(props?: any) {
         </motion.div>
       </div>
       <div
-        className="w-10/12 h-dvh flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 z-10"
+        className="w-10/12 h-[50vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 border-2 border-red-600 relative max-md:h-[80vh]"
         id="Services"
       >
         {/* <motion.div
