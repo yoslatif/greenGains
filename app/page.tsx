@@ -6,7 +6,6 @@ import { Quotes } from "../public/quotes.json";
 import About from "./components/about";
 import InstaFeed from "./components/instaFeed";
 import Services from "./components/services";
-import InstaFeedFetch from "./instagramFeed";
 interface Quote {
   id: number;
   text: string;
@@ -19,7 +18,6 @@ const serviceVariants = {
 };
 
 export default function Home(props?: any) {
-  const IFF = InstaFeedFetch();
   const OPTIONS: EmblaOptionsType = { loop: true };
   const [quotes, setQuotes] = useState<Quote[]>(Quotes);
   const [quote, setQuote] = useState<Quote>();
@@ -124,7 +122,7 @@ export default function Home(props?: any) {
         className="w-[90%] h-screen flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl md:h-full p-10"
         id="Testimonials"
       >
-        <InstaFeed options={OPTIONS} slides={IFF} />
+        <InstaFeed options={OPTIONS} />
       </div>
       <div
         className="w-[90%] h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"

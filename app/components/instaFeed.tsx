@@ -1,11 +1,10 @@
-// "use client";
-
 import { EmblaOptionsType } from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import InstaFeedFetch from "../instagramFeed";
 import { NextButton, PrevButton, usePrevNextButtons } from "./emblaButtons";
 
 type InstagramPost = {
@@ -36,6 +35,7 @@ type PropType = {
 
 export default function InstaFeed(props: PropType) {
   const { options, slides } = { ...props };
+  const IFF = InstaFeedFetch();
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     AutoScroll({ playOnInit: true }),
@@ -92,8 +92,8 @@ export default function InstaFeed(props: PropType) {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides &&
-            slides.data.map((post: InstagramPost, index) => (
+          {IFF &&
+            IFF.data.map((post: InstagramPost, index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__number">
                   <span>
