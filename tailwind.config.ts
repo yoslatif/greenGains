@@ -1,11 +1,23 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
+const backfaceVisibility = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".backface-visible": {
+      "backface-visibility": "visible",
+    },
+    ".backface-hidden": {
+      "backface-visibility": "hidden",
+    },
+  });
+});
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  
   theme: {
     extend: {
       backgroundImage: {
@@ -61,6 +73,7 @@ const config: Config = {
       animation: {
         "slide-in": "slide-in 1s ease var(--slide-in-delay) forwards",
         fade: "fade 1s ease var(--fade-delay) forwards",
+        "infinite-scroll": "infinite-scroll 25s linear infinite",
       },
       keyframes: {
         "slide-in": {
@@ -81,9 +94,14 @@ const config: Config = {
             opacity: "1",
           },
         },
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [backfaceVisibility],
 };
+
 export default config;

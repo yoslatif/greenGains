@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import ServicesModal from "./modal";
 
 export default function Services() {
   const [showModal, setShowModal] = React.useState(false);
@@ -72,9 +71,7 @@ export default function Services() {
           key={index}
           style={{ backgroundImage: `url(${service.imageUrl})` }}
           className={
-            showModal
-              ? "w-full h-full border-2 border-white flex flex-col items-center justify-center rounded-lg bg-cover object-fill group/item hover:scale-110 hover:transition-all hover:duration-500 hover:ease-in-out hover:bg-opacity-40 opacity-20 target:opacity-100"
-              : "w-full h-full border-2 border-white flex flex-col items-center justify-center rounded-lg bg-cover object-fill group/item hover:scale-110 hover:transition-all hover:duration-500 hover:ease-in-out hover:bg-opacity-40"
+            "w-full h-full border-2 border-white flex flex-col items-center justify-center rounded-lg bg-cover object-fill group/item hover:scale-110 hover:transition-all hover:duration-500 hover:ease-in-out hover:bg-opacity-40"
           }
         >
           <h1 className="text-4xl font-sans text-white group-hover/item:-translate-y-40 group-hover/item:transition-all group-hover/item:duration-300 group-hover/item:ease-in-out max-md:group-hover/item:-translate-y-10">
@@ -88,13 +85,6 @@ export default function Services() {
             onClick={() => setShowModal(true)}
           >
             Learn More
-            {showModal && (
-              <ServicesModal
-                serviceModal={service}
-                setShowModal={setShowModal}
-                handleClickNav={handleClickNav}
-              />
-            )}
           </button>
         </div>
       ))}

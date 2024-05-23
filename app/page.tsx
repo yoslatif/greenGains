@@ -1,11 +1,12 @@
 "use client";
+import { EmblaOptionsType } from "embla-carousel";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Quotes } from "../public/quotes.json";
 import About from "./components/about";
+import InstaFeed from "./components/instaFeed";
 import Services from "./components/services";
-import Testimonials from "./components/testimonials";
-
+import InstaFeedFetch from "./instagramFeed";
 interface Quote {
   id: number;
   text: string;
@@ -18,6 +19,8 @@ const serviceVariants = {
 };
 
 export default function Home(props?: any) {
+  const IFF = InstaFeedFetch();
+  const OPTIONS: EmblaOptionsType = { loop: true };
   const [quotes, setQuotes] = useState<Quote[]>(Quotes);
   const [quote, setQuote] = useState<Quote>();
   const [fade, setFade] = useState(true);
@@ -73,7 +76,7 @@ export default function Home(props?: any) {
 
   return (
     <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
-      <div className="transition-opacity duration-1000 text-center h-screen w-full items-center justify-center flex flex-col m-auto">
+      <div className="transition-opacity duration-1000 text-center h-screen w-[90%] items-center justify-center flex flex-col m-auto">
         <motion.div
           className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative"
           ref={quoteRef}
@@ -102,7 +105,7 @@ export default function Home(props?: any) {
         </motion.div>
       </div>
       <div
-        className="w-10/12 h-[50vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 border-2 border-red-600 relative max-md:h-[80vh]"
+        className="w-[90%] h-[50vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 relative max-md:h-[80vh]"
         id="Services"
       >
         {/* <motion.div
@@ -118,13 +121,13 @@ export default function Home(props?: any) {
         {/* </motion.div> */}
       </div>
       <div
-        className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
+        className="w-[90%] h-screen flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl md:h-full p-10"
         id="Testimonials"
       >
-        <Testimonials />
+        <InstaFeed options={OPTIONS} slides={IFF} />
       </div>
       <div
-        className="w-10/12 h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
+        className="w-[90%] h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
         id="About"
       >
         <About />
