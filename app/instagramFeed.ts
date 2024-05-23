@@ -22,9 +22,7 @@ type InstagramFeed = {
 };
 
 export default function InstaFeedFetch() {
-  const [instagramFeed, setInstagramFeed] = useState<InstagramFeed | null>(
-    null
-  );
+  const [instagramFeed, setInstagramFeed] = useState<InstagramFeed>();
   const [after, setAfter] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 

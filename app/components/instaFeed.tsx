@@ -31,7 +31,7 @@ type InstagramFeed = {
 
 type PropType = {
   options?: EmblaOptionsType;
-  slides: InstagramFeed;
+  slides?: InstagramFeed;
 };
 
 export default function InstaFeed(props: PropType) {
@@ -82,8 +82,8 @@ export default function InstaFeed(props: PropType) {
     setIsPlaying(autoScroll.isPlaying());
     if (emblaApi) {
       emblaApi
-        .on("autoScroll:play", () => setIsPlaying(true))
-        .on("autoScroll:stop", () => setIsPlaying(false))
+        .on(autoScroll.play, () => setIsPlaying(true))
+        .on(autoScroll.stop, () => setIsPlaying(false))
         .on("reInit", () => setIsPlaying(autoScroll.isPlaying()));
     }
   }, [emblaApi]);
