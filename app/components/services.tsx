@@ -5,6 +5,7 @@ export default function Services() {
   const refModal = useRef<HTMLDivElement>(null);
   const handleClickNav = (e: any) => scrollTo(e.target.id);
   useOnClickOutside();
+
   function useOnClickOutside() {
     useEffect(() => {
       const listener = (event: { target: any }) => {
@@ -31,6 +32,7 @@ export default function Services() {
       };
     }, []);
   }
+
   const services = [
     {
       id: 1,
@@ -38,8 +40,7 @@ export default function Services() {
       description: "Get personalized workouts...",
       imageUrl: "/personal-training.jpg",
       lorem:
-        "I always \
-      felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+        "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
     },
     {
       id: 2,
@@ -47,8 +48,7 @@ export default function Services() {
       description: "Tailored coaching regardless...",
       imageUrl: "/coaching.jpg",
       lorem:
-        "I always 2 \
-      felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+        "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
     },
     {
       id: 3,
@@ -56,41 +56,44 @@ export default function Services() {
       description: "Enjoy healthy, yummy meal plans...",
       imageUrl: "/nutrition-plans.jpg",
       lorem:
-        "I always 3 \
-      felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+        "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
     },
   ];
 
   return (
     <div
-      className="flex flex-row p-5 max-md:h-full max-md:w-full h-full w-full relative items-center justify-center gap-5 max-md:flex-col"
+      className="flex flex-wrap lg:flex-nowrap p-5 w-full items-center justify-center gap-10"
       ref={refModal}
     >
       {services.map((service, index) => (
         <div
           key={index}
           style={{ backgroundImage: `url(${service.imageUrl})` }}
-          className={
-            "w-full h-full border-2 border-white flex flex-col items-center justify-center rounded-lg bg-cover object-fill group/item hover:scale-110 hover:transition-all hover:duration-500 hover:ease-in-out hover:bg-opacity-40"
-          }
+          className="relative w-full max-w-xl h-96 lg:h-[500px] border-2 border-gray-200 rounded-lg bg-cover bg-center group hover:scale-105 hover:transition-transform duration-500 ease-in-out"
         >
-          <h1 className="text-4xl font-sans text-white group-hover/item:-translate-y-40 group-hover/item:transition-all group-hover/item:duration-300 group-hover/item:ease-in-out max-md:group-hover/item:-translate-y-10">
-            {service.name}
-          </h1>
-          <p className="text-white text-2xl opacity-0 group-hover/item:-translate-y-40 group-hover/item:transition-all group-hover/item:duration-300 group-hover/item:ease-in-out group-hover/item:opacity-100 max-md:group-hover/item:-translate-y-10">
-            {service.description}
-          </p>
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-sans py-2 px-4 rounded group/modal group-hover/item:transition-all group-hover/item:duration-500 group-hover/item:ease-in-out opacity-0 group-hover/item:opacity-100 target:bg-none"
-            onClick={() => setShowModal(true)}
-          >
-            Learn More
-          </button>
+          <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-20 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
+            <h1 className="text-4xl font-bold mb-4 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
+              {service.name}
+            </h1>
+            <p className="text-2xl mb-6 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
+              {service.description}
+            </p>
+            <button
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 transition-opacity duration-500 group-hover:opacity-100 opacity-0"
+              onClick={() => setShowModal(true)}
+            >
+              Learn More
+            </button>
+          </div>
         </div>
       ))}
     </div>
   );
 }
+
+
+
 // return (
 //   <div
 //     className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 max-md:h-full max-md:w-full"

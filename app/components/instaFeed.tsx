@@ -155,7 +155,6 @@ export default function InstaFeed(props: PropType) {
     </div>
   );
 }
-
 {
   /* <div
   key={post.id}

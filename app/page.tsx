@@ -6,6 +6,7 @@ import { Quotes } from "../public/quotes.json";
 import About from "./components/about";
 import InstaFeed from "./components/instaFeed";
 import Services from "./components/services";
+
 interface Quote {
   id: number;
   text: string;
@@ -24,7 +25,6 @@ export default function Home(props?: any) {
   const [fade, setFade] = useState(true);
   const [backgroundIndex, setBackgroundIndex] = useState(0); // New state for background index
   const { setShowModal, serviceModal } = props;
-  // const backgrounds = ["/background.jpg", "/gymNeon.jpg", "/abstract-fitness.jpg", "/beachgym.jpg"]; // Array of background images
   const backgrounds = ["/gymNeon.jpg"];
 
   const indexRef = useRef(0); // Declare indexRef variable
@@ -68,12 +68,12 @@ export default function Home(props?: any) {
   useEffect(() => {
     const backgroundInterval = setInterval(() => {
       setBackgroundIndex((prev) => (prev + 1) % backgrounds.length); // Cycle through background images
-    }, 13000); // Change background every 10 seconds
+    }, 13000); // Change background every 13 seconds
     return () => clearInterval(backgroundInterval);
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col">
+    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col space-y-20 p-10">
       <div className="transition-opacity duration-1000 text-center h-screen w-[90%] items-center justify-center flex flex-col m-auto">
         <motion.div
           className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative"
@@ -103,29 +103,19 @@ export default function Home(props?: any) {
         </motion.div>
       </div>
       <div
-        className="w-[90%] h-[50vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl opacity-100 max-sm:h-screen max-sm:w-[90%] max-sm:m-5 relative max-md:h-[80vh]"
+        className="w-[90%] h-[70vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl max-sm:h-auto max-sm:w-full max-sm:m-5 relative max-md:h-[80vh] space-y-10"
         id="Services"
       >
-        {/* <motion.div
-          className="w-full h-full"
-          ref={serviceRef}
-          style={{
-            x: serviceTranslate,
-            scaleX: serviceScaleX,
-            scaleY: serviceScaleY,
-            opacity: serviceOpacity,
-          }}        > */}
         <Services />
-        {/* </motion.div> */}
       </div>
       <div
-        className="w-[90%] h-screen flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl md:h-full p-10"
+        className="w-[90%] h-auto flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl md:h-auto p-10 space-y-10"
         id="Testimonials"
       >
         <InstaFeed options={OPTIONS} />
       </div>
       <div
-        className="w-[90%] h-1/2 flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl"
+        className="w-[90%] h-auto flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl space-y-10"
         id="About"
       >
         <About />
