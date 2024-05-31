@@ -27,7 +27,7 @@ export default function Home(props?: any) {
   const [fade, setFade] = useState(true);
   const [backgroundIndex, setBackgroundIndex] = useState(0); // New state for background index
   const { setShowModal, serviceModal } = props;
-  const backgrounds = ["/gymNeon.jpg"];
+  const backgrounds = ["/greengainsbackground1.jpg"];
 
   const indexRef = useRef(0); // Declare indexRef variable
   const quoteRef = useRef<HTMLDivElement>(null); // Declare quoteRef variable used for quote div scroll animation
@@ -75,7 +75,7 @@ export default function Home(props?: any) {
   }, [backgrounds.length]);
 
   return (
-    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col space-y-20 p-10">
+    <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/greengainsbackground1.jpg')] bg-fixed items-center justify-center flex flex-col space-y-20 p-10">
       <div className="transition-opacity duration-1000 text-center h-screen w-[90%] items-center justify-center flex flex-col m-auto">
         <motion.div
           className="h-1/2 w-3/4 bg-glass backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative max-md:p-5 max-md:h-auto max-md:w-full max-md:m-5 border-2 border-glassBorder"
