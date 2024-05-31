@@ -24,7 +24,7 @@ export default function Header() {
     };
   }, []);
   return (
-    <div className="flex flex-row items-center justify-between bg-peachGlass border-2 border-glassPeachBorder backdrop-blur-2xl w-full p-5 z-20 mb-20 fixed shadow-2xl h-auto rounded-2xl">
+    <div className="flex flex-row items-center justify-between bg-peachGlass border-2 border-glassPeachBorder backdrop-blur-2xl w-full p-2 z-20 mb-20 fixed shadow-2xl h-auto rounded-b-lg">
       <div className="items-center justify-center flex  basis-[100%] max-md:basis-[50%]">
         <Image
           src="/logo.png"
@@ -40,7 +40,8 @@ export default function Header() {
             });
           }}
         />
-        <h1 className="text-3xl font-bold text-center flex-1 text-[#ff8b39]">
+        <h1 className="flex-1 text-[green] relative top-0 w-fit h-auto py-5 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-4xl font-semibold text-transparent text-center select-auto">
+        {/* add and remove "font-extrabold" and see which one you like more */}
           Green Gains
         </h1>
       </div>
@@ -50,9 +51,9 @@ export default function Header() {
         ref={dropdownRef}
       >
         <button
-          className={`bg-none hover:text-black text-white font-sans py-2 px-4 rounded-xl cursor-pointer ${
+          className={`bg-none hover:text-green-500 text-white font-sans py-2 px-4 rounded-xl cursor-pointer ${
             isOpen
-              ? "transform rotate-90 duration-300"
+              ? "transform rotate-180 duration-500"
               : "transform rotate-0 duration-300"
           } `}
           onClick={() => {

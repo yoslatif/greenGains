@@ -444,3 +444,15 @@ link:hover {
   padding: 0 2.4rem;
   min-width: 8.4rem;
 }
+
+@layer components {
+  .btn-primary {
+      @apply py-1.5 px-3 text-center bg-blue-700 rounded-md text-white;
+  }
+}
+.animate-marquee {
+  animation: marquee 1s linear infinite;
+  /* Adjust duration and timing function as needed */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+}

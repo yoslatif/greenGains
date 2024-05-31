@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md"; // For the email icon
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-peachGlass backdrop-blur-2xl border-2 rounded-xl border-glassPeachBorder text-white text-center p-2 z-50">
+    <footer className="fixed bottom-0 left-0 w-full bg-peachGlass backdrop-blur-2xl border-2 rounded-t-lg border-glassPeachBorder text-white text-center p-1 z-50">
       <div className="flex justify-center items-center space-x-4">
         <a
           href="https://www.instagram.com/greengainsfitness_/"

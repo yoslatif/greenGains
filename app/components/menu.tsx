@@ -40,7 +40,7 @@ const itemIds = [
   { id: 0, name: "Home", icon: <FaHome />, link: "Home" },
   { id: 1, name: "About", icon: <FcAbout />, link: "About" },
   { id: 2, name: "Services", icon: <FaWeightHanging />, link: "Services" },
-  { id: 3, name: "Contact", icon: <MdContactPage />, link: "Contact" },
+  { id: 3, name: "Contact", icon: <MdContactPage />, link: "Footer" },
 ];
 
 const sidebar = {
