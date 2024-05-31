@@ -80,11 +80,11 @@ const MenuItem = ({ i, toggle }: { i: any; toggle: any }) => {
   return (
     <motion.li
       variants={menuVariants}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.5 }}
       whileTap={{ scale: 0.95 }}
       className={
         toggle
-          ? "relative mb-5 flex items-center cursor-pointer w-full h-full mt-20 -z-60"
+          ? "relative mb-5 flex items-center cursor-pointer w-full h-full mt-20 -z-60 -mx-10"
           : "relative mb-5 flex items-center cursor-pointer w-full h-full mt-20 z-30"
       }
     >
@@ -156,11 +156,9 @@ export function MenuToggled({
       animate={isOpen ? "open" : "closed"}
       ref={dropdownRef}
       variants={sidebar}
-      className={
-        isOpen ? "relative w-[300px] top-0 bottom-0 right-0 bg-white" : "hidden"
-      }
+      className={isOpen ? "relative top-0 bottom-0 right-0 bg-white" : "hidden"}
     >
-      <motion.div className="absolute w-[300px] bg-white h-full">
+      <motion.div className="relative w-auto h-full">
         <Navigation toggle={toggle} />
       </motion.div>
     </motion.nav>

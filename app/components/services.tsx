@@ -3,7 +3,17 @@ import React, { useEffect, useRef } from "react";
 export default function Services() {
   const [showModal, setShowModal] = React.useState(false);
   const refModal = useRef<HTMLDivElement>(null);
-  const handleClickNav = (e: any) => scrollTo(e.target.id);
+  const handleClickNav = (e: any) => {
+    console.log(e);
+    if (window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
+    const element = document.getElementById(e);
+    element?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
   useOnClickOutside();
 
   function useOnClickOutside() {
@@ -41,6 +51,7 @@ export default function Services() {
       imageUrl: "/personal-training.jpg",
       lorem:
         "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+      path: "services-expanded",
     },
     {
       id: 2,
@@ -49,6 +60,7 @@ export default function Services() {
       imageUrl: "/coaching.jpg",
       lorem:
         "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+      path: "services-expanded",
     },
     {
       id: 3,
@@ -56,7 +68,8 @@ export default function Services() {
       description: "Enjoy healthy, yummy meal plans...",
       imageUrl: "/nutrition-plans.jpg",
       lorem:
-        "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do everything.",
+        "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They're slowed down by their perception of themselves. If you're taught you can’t do anything, you won’t do anything. I was taught I could do       everything.",
+      path: "services-expanded",
     },
   ];
 
@@ -81,7 +94,10 @@ export default function Services() {
             </p>
             <button
               className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 transition-opacity duration-500 group-hover:opacity-100 opacity-0"
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                handleClickNav(service.path);
+                console.log(service.path);
+              }}
             >
               Learn More
             </button>
@@ -91,8 +107,6 @@ export default function Services() {
     </div>
   );
 }
-
-
 
 // return (
 //   <div

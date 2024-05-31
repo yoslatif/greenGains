@@ -1,34 +1,28 @@
 // components/Footer.tsx
-import React from "react";
+import { AiOutlineCalendar } from "react-icons/ai"; // For the calendar icon
 import { FaInstagram } from "react-icons/fa"; // For the Instagram icon
 import { MdEmail } from "react-icons/md"; // For the email icon
-import { AiOutlineCalendar } from "react-icons/ai"; // For the calendar icon
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-[#ffc399] text-white text-center p-2 z-50">
+    <footer className="fixed bottom-0 left-0 w-full bg-peachGlass backdrop-blur-2xl border-2 rounded-xl border-glassPeachBorder text-white text-center p-2 z-50">
       <div className="flex justify-center items-center space-x-4">
         <a
           href="https://www.instagram.com/greengainsfitness_/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-green-500"
         >
-          <FaInstagram size={20} />
+          <FaInstagram className="hover:text-green-500 hover:scale-150 hover:transition-all hover:duration-300 hover:ease-in-out h-14 w-14" />
         </a>
-        <a
-          href="mailto:greengainsfitness28@gmail.com"
-          className="hover:text-green-500"
-        >
-          <MdEmail size={20} />
+        <a href="mailto:greengainsfitness28@gmail.com">
+          <MdEmail className="hover:text-green-500 hover:scale-150 hover:transition-all hover:duration-300 hover:ease-in-out h-14 w-14" />
         </a>
         <a
           href="https://calendly.com/greengainsfitness"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-green-500"
         >
-          <AiOutlineCalendar size={20} />
+          <AiOutlineCalendar className="hover:text-green-500 hover:scale-150 hover:transition-all hover:duration-300 hover:ease-in-out h-14 w-14" />
         </a>
       </div>
     </footer>

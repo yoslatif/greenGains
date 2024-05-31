@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const backfaceVisibility = plugin(function ({ addUtilities }) {
   addUtilities({
@@ -17,7 +20,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  
+
   theme: {
     extend: {
       backgroundImage: {
@@ -25,6 +28,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "background-gym": "url('/background.png')",
+      },
+      borderColor: {
+        glassBorder: "rgba(177, 177, 177, 0.63)",
+        glassPeachBorder: "rgba(255, 217, 161, 0.63)",
       },
       colors: {
         primary: {
@@ -49,8 +56,9 @@ const config: Config = {
           800: "#102693",
           900: "#091A7A",
         },
-        glass:
-          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0))",
+        glass: "rgba(177, 177, 177, 0.38)",
+        blueGlass: "rgba(0, 149, 255, 0.38)",
+        peachGlass: "rgba(255, 217, 161, 0.38)",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
@@ -101,7 +109,18 @@ const config: Config = {
       },
     },
   },
-  plugins: [backfaceVisibility],
+  plugins: [backfaceVisibility, addVariablesForColors],
 };
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;

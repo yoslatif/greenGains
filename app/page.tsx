@@ -3,9 +3,11 @@ import { EmblaOptionsType } from "embla-carousel";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Quotes } from "../public/quotes.json";
+import { services } from "../public/services.json";
 import About from "./components/about";
 import InstaFeed from "./components/instaFeed";
 import Services from "./components/services";
+import { StickyScroll } from "./components/services-scroll-reveal";
 
 interface Quote {
   id: number;
@@ -76,7 +78,7 @@ export default function Home(props?: any) {
     <div className="w-screen min-h-[200vh] relative overflow-hidden bg-[url('/gymNeon.jpg')] bg-fixed items-center justify-center flex flex-col space-y-20 p-10">
       <div className="transition-opacity duration-1000 text-center h-screen w-[90%] items-center justify-center flex flex-col m-auto">
         <motion.div
-          className="h-1/2 w-3/4 bg-transparent backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative"
+          className="h-1/2 w-3/4 bg-glass backdrop-blur-2xl items-center justify-center flex flex-col rounded-2xl relative max-md:p-5 max-md:h-auto max-md:w-full max-md:m-5 border-2 border-glassBorder"
           ref={quoteRef}
           style={{
             x: translate,
@@ -103,19 +105,25 @@ export default function Home(props?: any) {
         </motion.div>
       </div>
       <div
-        className="w-[90%] h-[70vh] flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-auto rounded-2xl max-sm:h-auto max-sm:w-full max-sm:m-5 relative max-md:h-[80vh] space-y-10"
+        className="w-[90%] h-[70vh] flex flex-col items-center justify-center bg-glass border-2 border-glassBorder shadow-2xl backdrop-blur-2xl m-auto rounded-2xl relative space-y-10 max-md:p-5 max-md:h-auto max-md:w-full max-md:m-5"
         id="Services"
       >
         <Services />
       </div>
       <div
-        className="w-[90%] h-auto flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl md:h-auto p-10 space-y-10"
+        className="w-[90%] h-[70vh] flex flex-col items-center justify-center bg-glass border-2 border-glassBorder shadow-2xl backdrop-blur-2xl rounded-2xl p-10 space-y-10 max-md:p-5 max-md:h-auto max-md:w-full max-md:m-5"
         id="Testimonials"
       >
         <InstaFeed options={OPTIONS} />
       </div>
       <div
-        className="w-[90%] h-auto flex flex-col items-center justify-center bg-transparent backdrop-blur-2xl m-10 rounded-2xl space-y-10"
+        className="w-[90%] h-lvh flex flex-col items-center justify-center bg-glass border-2 border-glassBorder shadow-2xl backdrop-blur-xl p-10 rounded-2xl max-md:p-5 max-md:h-auto max-md:w-full max-md:m-5"
+        id="services-expanded"
+      >
+        <StickyScroll content={services} contentClassName="w-[70%] h-[70%]" />
+      </div>
+      <div
+        className="w-[90%] h-auto flex flex-col items-center justify-center bg-glass border-2 border-glassBorder shadow-2xl backdrop-blur-2xl m-10 rounded-2xl space-y-10"
         id="About"
       >
         <About />

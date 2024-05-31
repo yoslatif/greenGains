@@ -24,8 +24,8 @@ export default function Header() {
     };
   }, []);
   return (
-    <>
-      <div className="flex flex-row items-center justify-between bg-glass backdrop-blur-2xl w-screen p-5 z-20 mb-20 fixed shadow-2xl h-auto">
+    <div className="flex flex-row items-center justify-between bg-peachGlass border-2 border-glassPeachBorder backdrop-blur-2xl w-full p-5 z-20 mb-20 fixed shadow-2xl h-auto rounded-2xl">
+      <div className="items-center justify-center flex  basis-[100%] max-md:basis-[50%]">
         <Image
           src="/logo.png"
           alt="Green Gains Fitness Logo"
@@ -43,34 +43,34 @@ export default function Header() {
         <h1 className="text-3xl font-bold text-center flex-1 text-[#ff8b39]">
           Green Gains
         </h1>
-        {/* <div className="flex flex-col w-full place-items-end items-end justify-center right-10 float-right fixed h-full"></div> */}
-        <div
-          className="flex flex-col w-full place-items-center items-end justify-center right-10 float-right fixed h-full"
-          ref={dropdownRef}
-        >
-          <button
-            className={`bg-none hover:text-black text-white font-sans py-2 px-4 rounded-xl cursor-pointer ${
-              isOpen
-                ? "transform rotate-90 duration-300"
-                : "transform rotate-0 duration-300"
-            } `}
-            onClick={() => {
-              toggle();
-              console.log(
-                "Menu button clicked, isOpen is now: " + isOpen.toString()
-              );
-            }}
-          >
-            <IoMdMenu className="h-[50px] w-[50px]" />
-          </button>
-        </div>
-        <MenuToggled
-          dropdownRef={dropdownRef}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          toggle={toggle}
-        />
       </div>
-    </>
+      {/* <div className="flex flex-col w-full place-items-end items-end justify-center right-10 float-right fixed h-full"></div> */}
+      <div
+        className="flex flex-col w-auto place-items-center items-end justify-center right-10 float-right fixed h-full basis-[100%]"
+        ref={dropdownRef}
+      >
+        <button
+          className={`bg-none hover:text-black text-white font-sans py-2 px-4 rounded-xl cursor-pointer ${
+            isOpen
+              ? "transform rotate-90 duration-300"
+              : "transform rotate-0 duration-300"
+          } `}
+          onClick={() => {
+            toggle();
+            console.log(
+              "Menu button clicked, isOpen is now: " + isOpen.toString()
+            );
+          }}
+        >
+          <IoMdMenu className="h-[50px] w-[50px]" />
+        </button>
+      </div>
+      <MenuToggled
+        dropdownRef={dropdownRef}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        toggle={toggle}
+      />
+    </div>
   );
 }
