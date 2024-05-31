@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { MenuToggled } from "./menu";
+import { motion } from "framer-motion"; // Import framer-motion
+
 export default function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,15 +25,34 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <div className="flex flex-row items-center justify-between bg-peachGlass border-2 border-glassPeachBorder backdrop-blur-2xl w-full p-2 z-20 mb-20 fixed shadow-2xl h-auto rounded-b-lg">
       <div className="items-center justify-center flex  basis-[100%] max-md:basis-[50%]">
-        <Image
-          src="/logo.png"
-          alt="Green Gains Fitness Logo"
-          width={70}
-          height={70}
-          className="rounded-full cursor-pointer"
+        <motion.div
+          whileHover={{ scale: 1.4 }} // Add scale effect on hover
+          whileTap={{ scale: 0.1 }}
+          className="transition duration-500 ease-in-out hover:shadow-neon-hover" // Add hover neon glow
+        >
+          <Image
+            src="/GGF.png"
+            alt="Green Gains Fitness Logo"
+            width={65}
+            height={65}
+            className="rounded-full cursor-pointer"
+            onClick={() => {
+              const element = document.getElementById("Home");
+              element?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
+          />
+        </motion.div>
+        <motion.h1
+          className="flex-1 text-[green] relative top-0 w-fit h-auto py-5 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-4xl font-semibold text-transparent text-center select-auto transition duration-500 ease-in-out hover:shadow-neon-hover cursor-pointer"
+          whileHover={{ scale: 1.1 }} // Add scale effect on hover
+          whileTap={{ scale: 0.2 }}
           onClick={() => {
             const element = document.getElementById("Home");
             element?.scrollIntoView({
@@ -39,13 +60,11 @@ export default function Header() {
               block: "start",
             });
           }}
-        />
-        <h1 className="flex-1 text-[green] relative top-0 w-fit h-auto py-5 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-4xl font-semibold text-transparent text-center select-auto">
-        {/* add and remove "font-extrabold" and see which one you like more */}
+        >
           Green Gains
-        </h1>
+          
+        </motion.h1>
       </div>
-      {/* <div className="flex flex-col w-full place-items-end items-end justify-center right-10 float-right fixed h-full"></div> */}
       <div
         className="flex flex-col w-auto place-items-center items-end justify-center right-10 float-right fixed h-full basis-[100%]"
         ref={dropdownRef}

@@ -4,6 +4,7 @@ import React from "react";
 import { FaHome } from "react-icons/fa";
 import { FaWeightHanging } from "react-icons/fa6";
 import { FcAbout } from "react-icons/fc";
+import { IoFitnessSharp } from "react-icons/io5";
 import { MdContactPage } from "react-icons/md";
 
 const menuVariants = {
@@ -38,9 +39,9 @@ const navVariants = {
 
 const itemIds = [
   { id: 0, name: "Home", icon: <FaHome />, link: "Home" },
-  { id: 1, name: "About", icon: <FcAbout />, link: "About" },
+  { id: 1, name: "About", icon: <IoFitnessSharp />, link: "About" },
   { id: 2, name: "Services", icon: <FaWeightHanging />, link: "Services" },
-  { id: 3, name: "Contact", icon: <MdContactPage />, link: "Footer" },
+  { id: 3, name: "Contact", icon: <MdContactPage />, link: "Contact" },
 ];
 
 const sidebar = {
@@ -64,7 +65,7 @@ const sidebar = {
 const Navigation = ({ toggle }: { toggle: any }) => (
   <motion.ul
     variants={navVariants}
-    className={"absolute w-[300px] top-0 bottom-0 right-0 bg-white"}
+    className={"absolute w-[300px] top-0 bottom-0 right-0 bg-white text-white"}
   >
     {itemIds.map((i) => (
       <MenuItem i={i} key={i.id} toggle={toggle} />
