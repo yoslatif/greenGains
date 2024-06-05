@@ -102,6 +102,8 @@
 //     </motion.div>
 //   );
 // };
+
+// StickyScroll.tsx
 "use client";
 import { cn } from "@/utils/cn";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
@@ -120,7 +122,7 @@ const content = [
   {
     title: "Title 2",
     description: "Description 2",
-    src: "/public/fitness-coaching.jpg", // Correct path to the image in the public folder
+    src: "/GGF.png", // Correct path to the image in the public folder
     alt: "Description of image 2",
     content: <div>Content 2</div>,
   },
@@ -214,7 +216,7 @@ export const StickyScroll = ({
       <div className={cn("hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden", contentClassName)}>
         {content[activeCard].src && (
           <Image
-            src={content[activeCard].src || "/images/default.jpg"} // Provide a default image path
+            src={content[activeCard].src || "/GGF.png"} // Provide a default image path
             alt={content[activeCard].alt || "Default Image"}
             layout="fill"
             objectFit="cover"
