@@ -18,7 +18,7 @@ const About = () => {
       },
       {
         root: null, // viewport
-        threshold: 0.5,
+        threshold: 0.2,
       }
     );
 
@@ -35,7 +35,7 @@ const About = () => {
 
   return (
     <div ref={refContainer} className="container">
-      <div className="headshot">
+      <div className="headshot absolute">
         <Image
           src="/headshot.jpg"
           alt="Coach Sukhpreet"

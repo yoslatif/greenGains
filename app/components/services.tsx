@@ -75,17 +75,17 @@ export default function Services() {
 
   return (
     <div
-      className="flex flex-wrap lg:flex-nowrap p-5 w-full items-center justify-center gap-10"
+      className="flex flex-wrap lg:flex-nowrap p-6 w-full items-center justify-center gap-7"
       ref={refModal}
     >
       {services.map((service, index) => (
         <div
           key={index}
           style={{ backgroundImage: `url(${service.imageUrl})` }}
-          className="relative w-full max-w-xl h-96 lg:h-[500px] border-2 border-gray-200 rounded-lg bg-cover bg-center group hover:scale-105 hover:transition-transform duration-500 ease-in-out"
+          className="relative w-full max-w-xl h-96 lg:h-[550px] border-gray-200 rounded-lg bg-cover bg-center group hover:scale-105 hover:transition-transform duration-500 ease-in-out"
         >
           <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-20 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white">
             <h1 className="text-4xl font-bold mb-4 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
               {service.name}
             </h1>
