@@ -457,3 +457,19 @@ link:hover {
   /* Prevent text from wrapping */
 }
 
+
+@keyframes wave {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.background-animated {
+  background: url('/darkfitness.png') repeat-x;
+  animation: wave 20s linear infinite;
+  background-attachment: fixed;
+  background-size: cover;
+}
