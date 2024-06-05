@@ -27,7 +27,7 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-between bg-transparent border-2 border-y-zinc-700 border-x-transparent border-t-transparent backdrop-blur-2xl w-full p-2 z-20 mb-20 absolute shadow-2xl h-auto rounded-b-lg">
+    <div className="flex flex-row items-center justify-between bg-transparent border-2 border-y-zinc-700 border-x-transparent border-t-transparent backdrop-blur-2xl w-full p-2 z-20 mb-20 fixed shadow-2xl h-auto rounded-b-lg">
       <div className="items-center justify-center flex  basis-[100%] max-md:basis-[50%]">
         <motion.div
           whileHover={{ scale: 1.4 }} // Add scale effect on hover
