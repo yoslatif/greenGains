@@ -35,7 +35,7 @@ const About = () => {
 
   return (
     <div ref={refContainer} className="container">
-      <div className="headshot absolute">
+      <div className="headshot relative">
         <Image
           src="/headshot.jpg"
           alt="Coach Sukhpreet"

@@ -254,10 +254,10 @@ link:hover {
 .headshot {
   position: absolute;
   width: 300px;
-  height: 500px;
-  left: 50%;
+  height: 550px;
+  left: 48%;
   transform: translateX(-50%); /* Center on initial view */
-  z-index: 2;
+  z-index: 1;
 }
 
 .bio {
